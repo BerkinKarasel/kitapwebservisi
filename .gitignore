@@ -1,0 +1,4 @@
+﻿__pycache__/
+database/books.db
+server.out.log
+server.err.log
