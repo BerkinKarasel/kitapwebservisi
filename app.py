@@ -19,6 +19,7 @@ else:
 DB_PATH = DATA_DIR / "database" / "books.db"
 BUNDLED_STATIC_DIR = RESOURCE_DIR / "static"
 STATIC_DIR = DATA_DIR / "static" if getattr(sys, "frozen", False) else BUNDLED_STATIC_DIR
+OVERRIDES_PATH = DATA_DIR / "book_overrides.json"
 FALLBACK_COVER = "/covers/default.svg"
 
 
@@ -181,7 +182,7 @@ SAMPLE_BOOKS = [
         "genre": "Macera",
         "publisher": "İş Bankası Kültür Yayınları",
         "publish_year": 2017,
-        "cover_url": FALLBACK_COVER,
+        "cover_url": "/covers/beyazdis.jpg",
         "description": "Jack London’ın Issız Diyarı, yabanı, buz kalpli Kuzey Toprakları’ndaki hayatı konu edindiği ikinci romanı Beyaz Diş’ tir. Vahşetin Çağrısı’ na kendini bırakmış bir annenin yavrusu Beyaz Diş’ in diyarıdır anlatılan. Onun hayranlık uyandırıcı zekâsı ve içgüdüleriyle kendini var edişinin ve “insan tanrılar” ın yaşamına geri dönüşünün enfes hikâyesi…",
     },
     {
@@ -221,7 +222,7 @@ SAMPLE_BOOKS = [
         "genre": "Klasik",
         "publisher": "İş Bankası Kültür Yayınları",
         "publish_year": 2021,
-        "cover_url": FALLBACK_COVER,
+        "cover_url": "/covers/karamazov.jpg",
         "description": "Fyodor Mihayloviç Dostoyevski (1821-1881): İlk romanı İnsancıklar 1846’da yayımlandı. Ünlü eleştirmen V. Byelinski bu eser üzerine Dostoyevski’den geleceğin büyük yazarı olarak söz etti. Ancak daha sonra yayımlanan öykü ve romanları, çağımızda edebiyat klasikleri arasında yer alsa da, o dönemde fazla ilgi görmedi. Yazar 1849’da  I. Nikola’nın baskıcı rejimine muhalif Petraşevski grubunun üyesi olduğu gerekçesiyle tutuklandı. Kurşuna dizilmek üzereyken cezası sürgün ve zorunlu askerliğe çevrildi. Cezasını tamamlayıp Sibirya’dan döndükten sonra Petersburg’da Vremya dergisini çıkarmaya başladı, yazdığı romanlarla tekrar eski ününe kavuştu. Karamazov Kardeşler Dostoyevski’nin son başyapıtıdır.",
     },
     {
@@ -245,13 +246,13 @@ SAMPLE_BOOKS = [
         "description": "Hobbit, tüm zamanların en sevilen yazarlarından J.R.R. Tolkien’in zihninden yayılan hikâyeler aracılığıyla elflerin, büyücülerin, cücelerin, ejderhaların, orkların ve Yüzüklerin Efendisi’yle Silmarillion’da tasvir edilen birçok diğer yaratığın evi olan büyüleyici Orta Dünya’nın kapısını açan unutulmaz bir klasik.",
     },
     {
-        "title": "Harry Potter ve Felsefe Tasi",
+        "title": "Harry Potter ve Felsefe Taşı",
         "authors": ["J. K. Rowling"],
         "isbn": "9789750802942",
         "genre": "Fantastik",
         "publisher": "Yapı Kredi Yayınları",
         "publish_year": 2016,
-        "cover_url": FALLBACK_COVER,
+        "cover_url": "/covers/harrypotterfelsefetasi.jpg",
         "description": "Sıradan bir çocuk gibi yaşarken, kendini büyücülük dünyasının içinde bulan Harry Potter’ın maceralarının ilk bölümü, dünya yayıncılık tarihinde “en kısa sürede en çok satan kitap” unvanına sahip Harry Potter ve Felsefe Taşı, Ülkü Tamer’in çevirisiyle, Türkiye’de. J. K. Rowling’in Harry Potter ve Felsefe Taşı adlı kitabı, Yapı Kredi Yayınları’ndan çıktı. Harry Potter sıradan bir çocuk olduğunu sanırken, bir baykuşun getirdiği mektuplarla hayatı değişir: Başvurmadığı halde Hogwarts Cadılık ve Büyücülük Okulu’na kabul edilmiştir. Burada birbirinden ilginç dersler alır, iki arkadaşıyla birlikte maceradan maceraya koşar... ",
     },
     {
@@ -314,13 +315,55 @@ def get_connection():
 
 
 def ensure_runtime_assets():
-    if not getattr(sys, "frozen", False):
-        return
+    if getattr(sys, "frozen", False) and not STATIC_DIR.exists():
+        shutil.copytree(BUNDLED_STATIC_DIR, STATIC_DIR)
 
-    if STATIC_DIR.exists():
-        return
+    if not OVERRIDES_PATH.exists():
+        OVERRIDES_PATH.write_text(build_override_template(), encoding="utf-8")
 
-    shutil.copytree(BUNDLED_STATIC_DIR, STATIC_DIR)
+
+def build_override_template():
+    overrides = {}
+    for book in SAMPLE_BOOKS:
+        overrides[book["isbn"]] = {
+            "title": book["title"],
+            "cover_url": book["cover_url"],
+        }
+
+    return json.dumps(overrides, ensure_ascii=False, indent=2)
+
+
+def load_book_overrides():
+    if not OVERRIDES_PATH.exists():
+        return {}
+
+    try:
+        overrides = json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+    if not isinstance(overrides, dict):
+        return {}
+
+    normalized_overrides = {}
+    for isbn, values in overrides.items():
+        if not isinstance(values, dict):
+            continue
+        normalized_overrides[str(isbn)] = values
+    return normalized_overrides
+
+
+def apply_book_overrides(book, overrides):
+    override = overrides.get(book["isbn"])
+    if not override:
+        return book
+
+    merged_book = dict(book)
+    for field in ("cover_url", "description", "title", "genre", "publisher", "publish_year"):
+        value = override.get(field)
+        if value not in (None, ""):
+            merged_book[field] = value
+    return merged_book
 
 
 def ensure_schema(connection):
@@ -363,7 +406,10 @@ def ensure_schema(connection):
 
 
 def seed_books(connection):
-    for book in SAMPLE_BOOKS:
+    overrides = load_book_overrides()
+
+    for sample_book in SAMPLE_BOOKS:
+        book = apply_book_overrides(sample_book, overrides)
         existing_book = connection.execute(
             "SELECT id FROM books WHERE isbn = ?",
             (book["isbn"],),

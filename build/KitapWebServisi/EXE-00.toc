@@ -61,7 +61,7 @@
  [],
  False,
  False,
- 1773937467,
+ 1773942325,
  [('run.exe',
    'C:\\laragon\\bin\\python\\python-3.13\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],
