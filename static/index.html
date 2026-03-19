@@ -17,20 +17,16 @@
       <div class="hero-stat">
         <span class="stat-label" data-text="heroStatLabel">Canli Sonuc</span>
         <strong id="resultCount" data-text="resultCountDefault">0 kitap</strong>
-        <p data-text="heroStatText">Arayuz ve API ayni veritabanini kullanir.</p>
+        <p data-text="heroStatText"></p>
       </div>
     </section>
 
-    <section class="panel shell">
-      <div class="panel-header">
-        <h2 data-text="apiTitle">Hazir API Uclari</h2>
-        <button id="loadAllButton" class="secondary" type="button" data-text="loadAllButton">Tum Kitaplari Getir</button>
+    <section class="action-strip shell">
+      <div class="action-copy">
+        <h2 data-text="actionTitle">Kitaplığı Keşfet</h2>
+        <p data-text="actionText">Tüm kitaplari tek tikla listeleyin ve kartlarin içine tiklayarak detay ozet sayfalarina gecin.</p>
       </div>
-      <div class="endpoint-list">
-        <code>GET /api/books/by-isbn?isbn=9780060853983</code>
-        <code>GET /api/books/by-author?author=Oguz%20Atay</code>
-        <code>GET /api/books/by-genre?genre=Roman</code>
-      </div>
+      <button id="loadAllButton" class="secondary action-button" type="button" data-text="loadAllButton">Tüm Kitapları Getir</button>
     </section>
 
     <section class="grid">

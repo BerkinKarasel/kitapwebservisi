@@ -34,6 +34,16 @@ python app.py
 http://127.0.0.1:8000
 ```
 
+## Tek Tikla Acilis
+
+Uygulamayi cift tiklayarak acmak icin su dosyayi kullanabilirsiniz:
+
+```text
+start_app.bat
+```
+
+Bu dosya sunucuyu baslatir ve uygulamayi varsayilan tarayicida otomatik acar. Sunucu zaten aciksa sadece tarayiciyi acar.
+
 ## API Uclari
 
 ### 1. ISBN ile kitap bul
@@ -97,4 +107,3 @@ Sunucu calisir durumdayken asagidaki komutla ornek istemciyi test edebilirsiniz:
 ```bash
 python client_example.py
 ```
-

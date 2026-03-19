@@ -1,15 +1,22 @@
 ﻿import json
 import mimetypes
 import sqlite3
+import sys
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
 
-BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "database" / "books.db"
-STATIC_DIR = BASE_DIR / "static"
+if getattr(sys, "frozen", False):
+    RESOURCE_DIR = Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
+    DATA_DIR = Path(sys.executable).resolve().parent
+else:
+    RESOURCE_DIR = Path(__file__).resolve().parent
+    DATA_DIR = RESOURCE_DIR
+
+DB_PATH = DATA_DIR / "database" / "books.db"
+STATIC_DIR = RESOURCE_DIR / "static"
 FALLBACK_COVER = "/covers/default.svg"
 
 

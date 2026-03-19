@@ -2,7 +2,7 @@
   "pageTitle": "Kitap Web Servisi 📚",
   "heroEyebrow": "Zeynep Kıral tarafından geliştirildi-2026 Berkin Karasel tarafından düzenlendi",
   "heroTitle": "Kitap Bilgileri Görüntüleme Servisi.",
-  "heroLead": "ISBN, yazar, tür veya kitap adına gore sorgu yapın; sonucları kapak görseli, meta bilgiler ve kart düzeni ile ekranda inceleyin.",
+  "heroLead": "ISBN, yazar, tür veya kitap adına gore sorgu yapın; sonuçları kapak görseli, meta bilgiler ve kart düzeni ile ekranda inceleyin.",
   "heroStatLabel": "Kitap Sayısı",
   "resultCountDefault": "0 kitap",
   "apiTitle": "Hazir API Uçları",
@@ -36,7 +36,7 @@
   "subtitleAllBooks": "Tüm kitaplar listelendi.",
   "subtitleNoResult": "Sonuç bulunamadı.",
   "emptyResultBadge": "Boş Sonuç",
-  "emptyResultTitle": "şleşen kitap bulunamadı",
+  "emptyResultTitle": "Eşleşen kitap bulunamadı",
   "emptyResultText": "Farklı bir ISBN, yazar, tur veya kitap adı ile tekrar deneyin.",
   "errorSubtitle": "Sorgu tamamlanamadi.",
   "errorTitle": "Sonuç alınamadi",
@@ -48,5 +48,7 @@
   "badgeError": "Hata {status}",
   "isbnLabel": "ISBN",
   "publisherLabel": "Basımevi",
-  "publishYearLabel": "Basım Yılı"
+  "publishYearLabel": "Basım Yılı",
+  "actionTitle": "Kitaplığı Keşfet",
+  "actionText": "Tüm kitapları tek tikla listeleyin ve kartlarin içine tıklayarak kitapların özetini inceleyin."
 }
