@@ -1,5 +1,6 @@
 ﻿import json
 import mimetypes
+import shutil
 import sqlite3
 import sys
 from http import HTTPStatus
@@ -16,7 +17,8 @@ else:
     DATA_DIR = RESOURCE_DIR
 
 DB_PATH = DATA_DIR / "database" / "books.db"
-STATIC_DIR = RESOURCE_DIR / "static"
+BUNDLED_STATIC_DIR = RESOURCE_DIR / "static"
+STATIC_DIR = DATA_DIR / "static" if getattr(sys, "frozen", False) else BUNDLED_STATIC_DIR
 FALLBACK_COVER = "/covers/default.svg"
 
 
@@ -311,6 +313,16 @@ def get_connection():
     return connection
 
 
+def ensure_runtime_assets():
+    if not getattr(sys, "frozen", False):
+        return
+
+    if STATIC_DIR.exists():
+        return
+
+    shutil.copytree(BUNDLED_STATIC_DIR, STATIC_DIR)
+
+
 def ensure_schema(connection):
     connection.executescript(
         """
@@ -411,6 +423,7 @@ def seed_books(connection):
 
 def initialize_database():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ensure_runtime_assets()
     with get_connection() as connection:
         ensure_schema(connection)
         seed_books(connection)
