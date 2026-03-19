@@ -1,9 +1,9 @@
+import os
 import socket
-import subprocess
 import sys
+import threading
 import time
 import webbrowser
-from pathlib import Path
 
 import app
 
@@ -11,9 +11,6 @@ import app
 HOST = "127.0.0.1"
 PORT = 8000
 APP_URL = f"http://{HOST}:{PORT}"
-BASE_DIR = Path(__file__).resolve().parent if not getattr(sys, "frozen", False) else Path(sys.executable).resolve().parent
-CREATE_NEW_PROCESS_GROUP = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
-DETACHED_PROCESS = getattr(subprocess, "DETACHED_PROCESS", 0)
 
 
 def is_server_running():
@@ -33,34 +30,29 @@ def wait_for_server(timeout_seconds=15):
     return False
 
 
-def start_server():
-    if getattr(sys, "frozen", False):
-        command = [sys.executable, "--serve"]
-    else:
-        command = [sys.executable, "launch_app.py", "--serve"]
+def open_browser():
+    try:
+        os.startfile(APP_URL)
+        return
+    except Exception:
+        pass
 
-    subprocess.Popen(
-        command,
-        cwd=BASE_DIR,
-        creationflags=CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS,
-    )
-
-
-def run_server_mode():
-    app.run_server()
+    webbrowser.open(APP_URL)
 
 
 def main():
-    if "--serve" in sys.argv:
-        run_server_mode()
+    if is_server_running():
+        open_browser()
         return
 
-    if not is_server_running():
-        start_server()
-        if not wait_for_server():
-            raise SystemExit("Sunucu baslatilamadi.")
+    server_thread = threading.Thread(target=app.run_server, daemon=False)
+    server_thread.start()
 
-    webbrowser.open(APP_URL)
+    if not wait_for_server():
+        raise SystemExit("Sunucu baslatilamadi.")
+
+    open_browser()
+    server_thread.join()
 
 
 if __name__ == "__main__":

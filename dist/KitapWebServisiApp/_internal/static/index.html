@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-text="pageTitle">Kitap Web Servisi</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow" data-text="heroEyebrow">Yerel Web Servisi</p>
+        <h1 data-text="heroTitle">Kitap bilgilerini daha zengin bir sonucla goruntuleyin.</h1>
+        <p class="lead" data-text="heroLead">ISBN, yazar, tur veya kitap adina gore sorgu yapin; sonuclari kapak gorseli, meta bilgiler ve kart duzeni ile ekranda inceleyin.</p>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label" data-text="heroStatLabel">Canli Sonuc</span>
+        <strong id="resultCount" data-text="resultCountDefault">0 kitap</strong>
+        <p data-text="heroStatText"></p>
+      </div>
+    </section>
+
+    <section class="action-strip shell">
+      <div class="action-copy">
+        <h2 data-text="actionTitle">Kitaplığı Keşfet</h2>
+        <p data-text="actionText">Tüm kitaplari tek tikla listeleyin ve kartlarin içine tiklayarak detay ozet sayfalarina gecin.</p>
+      </div>
+      <button id="loadAllButton" class="secondary action-button" type="button" data-text="loadAllButton">Tüm Kitapları Getir</button>
+    </section>
+
+    <section class="grid">
+      <form class="card shell" data-endpoint="/api/books/by-isbn" data-field="isbn">
+        <h3 data-text="formIsbnTitle">Kitap Bul</h3>
+        <label for="isbn" data-text="formIsbnLabel">ISBN</label>
+        <input id="isbn" name="isbn" placeholder="9780060853983" data-placeholder="formIsbnPlaceholder" required>
+        <button type="submit" data-text="formIsbnButton">ISBN ile Sorgula</button>
+      </form>
+
+      <form class="card shell" data-endpoint="/api/books/by-author" data-field="author">
+        <h3 data-text="formAuthorTitle">Yazara Gore Kitaplar</h3>
+        <label for="author" data-text="formAuthorLabel">Yazar Adi Soyadi</label>
+        <input id="author" name="author" placeholder="Yazar Adi Giriniz" data-placeholder="formAuthorPlaceholder" required>
+        <button type="submit" data-text="formAuthorButton">Yazari Ara</button>
+      </form>
+
+      <form class="card shell" data-endpoint="/api/books/by-genre" data-field="genre">
+        <h3 data-text="formGenreTitle">Ture Gore Liste</h3>
+        <label for="genre" data-text="formGenreLabel">Tur</label>
+        <input id="genre" name="genre" placeholder="Tur Giriniz" data-placeholder="formGenrePlaceholder" required>
+        <button type="submit" data-text="formGenreButton">Turu Listele</button>
+      </form>
+    </section>
+
+    <section class="panel result-panel shell">
+      <div class="panel-header">
+        <div>
+          <h2 data-text="resultsTitle">Sonuclar</h2>
+          <p id="resultSubtitle" class="subtitle" data-text="resultsSubtitleDefault">Bir sorgu calistirdiginizda kitaplar burada kart olarak gosterilecek.</p>
+        </div>
+        <button id="clearButton" class="ghost" type="button" data-text="clearButton">Temizle</button>
+      </div>
+      <div id="result" class="result-grid empty-state">
+        <article class="empty-card">
+          <span class="empty-badge" data-text="emptyBadge">Hazir</span>
+          <h3 data-text="emptyTitle">Aramaya baslayin</h3>
+          <p data-text="emptyText">Bir sorgu secin, sonuc ekraninda kitap kapaklari ve detaylarini gorelim.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
