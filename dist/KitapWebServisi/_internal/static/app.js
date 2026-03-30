@@ -16,6 +16,15 @@ const defaultTexts = {
   serviceModeTitle: "Sonuclari hangi servis katmanindan getirelim?",
   classicModeButton: "Klasik Servis",
   semanticModeButton: "Semantic Servis",
+  semanticModeBadge: "Semantic Mod",
+  classicModeBadge: "Klasik Mod",
+  bookDetailTitle: "Kitap Dosyasi",
+  semanticDetailTitle: "Semantic Veri Katmani",
+  translatorLabel: "Cevirmen",
+  seriesLabel: "Seri",
+  originalLanguageLabel: "Orijinal Dil",
+  awardLabel: "Odul",
+  semanticSignalsLabel: "Semantic Etiketler",
   resultCountDefault: "0 kitap",
   apiTitle: "Hazir API Uclari",
   loadAllButton: "Tum Kitaplari Getir",
@@ -232,6 +241,15 @@ function normalizeSemanticBook(node) {
     publish_year: Number.parseInt(node.datePublished, 10) || "",
     cover_url: coverUrl,
     description: node.description || "",
+    original_language: node.originalLanguage || node.inLanguage || "",
+    translator: node.translator?.name || "",
+    series: node.isPartOf?.name || "",
+    award: node.award || "",
+    keywords: Array.isArray(node.keywords)
+      ? node.keywords
+      : typeof node.keywords === "string"
+        ? node.keywords.split(",").map((item) => item.trim()).filter(Boolean)
+        : [],
     authors,
   };
 }
@@ -293,7 +311,12 @@ function updateServiceModeButtons() {
 
 function setServiceMode(mode) {
   currentServiceMode = mode === "semantic" ? "semantic" : "classic";
+  document.body.dataset.serviceMode = currentServiceMode;
   updateServiceModeButtons();
+}
+
+function modeBadgeLabel() {
+  return getServiceMode() === "semantic" ? t("semanticModeBadge") : t("classicModeBadge");
 }
 
 function buildRequestUrl(field, value) {
@@ -326,20 +349,43 @@ function buildRequestUrl(field, value) {
 }
 
 function bookCard(book) {
+  const semanticExtras = getServiceMode() === "semantic"
+    ? [
+        book.original_language ? `<span>${t("originalLanguageLabel")}: ${book.original_language}</span>` : "",
+        book.translator ? `<span>${t("translatorLabel")}: ${book.translator}</span>` : "",
+        book.series ? `<span>${t("seriesLabel")}: ${book.series}</span>` : "",
+      ].filter(Boolean).join("")
+    : "";
+
+  const signalPills = getServiceMode() === "semantic"
+    ? [
+        book.award ? `<span class="signal-pill">${book.award}</span>` : "",
+        ...(book.keywords || []).slice(0, 2).map((keyword) => `<span class="signal-pill">${keyword}</span>`),
+      ].join("")
+    : "";
+
   return `
     <article class="book-card" data-book-isbn="${book.isbn}" tabindex="0" role="button">
-      <img
-        class="book-cover"
-        src="${book.cover_url}"
-        alt="${book.title} kapak gorseli"
-        loading="lazy"
-        referrerpolicy="no-referrer"
-        data-isbn="${book.isbn}"
-        onerror="this.src='/covers/default.svg'">
+      <div class="book-cover-frame">
+        <span class="mode-ribbon">${modeBadgeLabel()}</span>
+        <img
+          class="book-cover"
+          src="${book.cover_url}"
+          alt="${book.title} kapak gorseli"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          data-isbn="${book.isbn}"
+          onerror="this.src='/covers/default.svg'">
+      </div>
       <div class="book-body">
-        <span class="book-badge">${book.genre}</span>
-        <h3>${book.title}</h3>
-        <p class="book-authors">${book.authors.join(", ")}</p>
+        <div class="book-head">
+          <span class="book-badge">${book.genre}</span>
+          <h3>${book.title}</h3>
+          <p class="book-authors">${book.authors.join(", ")}</p>
+        </div>
+        ${signalPills ? `<div class="signal-row">${signalPills}</div>` : ""}
+        ${book.description ? `<p class="book-summary">${book.description.slice(0, 180)}...</p>` : ""}
+        ${semanticExtras ? `<div class="book-extra">${semanticExtras}</div>` : ""}
         <div class="book-meta">
           <span>${t("isbnLabel")}: ${book.isbn}</span>
           <span>${t("publisherLabel")}: ${book.publisher}</span>
@@ -404,14 +450,72 @@ function renderBooks(payload) {
       `
       : "";
 
+  const detailFacts = [
+    `<span>${t("isbnLabel")}: ${featuredBook.isbn}</span>`,
+    `<span>${t("publisherLabel")}: ${featuredBook.publisher}</span>`,
+    `<span>${t("publishYearLabel")}: ${featuredBook.publish_year}</span>`,
+    featuredBook.original_language ? `<span>${t("originalLanguageLabel")}: ${featuredBook.original_language}</span>` : "",
+    featuredBook.translator ? `<span>${t("translatorLabel")}: ${featuredBook.translator}</span>` : "",
+    featuredBook.series ? `<span>${t("seriesLabel")}: ${featuredBook.series}</span>` : "",
+    featuredBook.award ? `<span>${t("awardLabel")}: ${featuredBook.award}</span>` : "",
+  ].filter(Boolean).join("");
+
+  const detailSignals = getServiceMode() === "semantic"
+    ? `
+      <div class="detail-signals">
+        <span class="meta-chip">${t("semanticSignalsLabel")}</span>
+        <div class="signal-row">
+          ${(featuredBook.keywords || []).map((keyword) => `<span class="signal-pill">${keyword}</span>`).join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  if (normalized.books.length === 1) {
+    resultElement.className = "result-grid detail-mode";
+    resultElement.innerHTML = `
+      <section class="result-highlight detail-layout">
+        <article class="meta-card detail-sidebar">
+          <div class="detail-sidebar-top">
+            <span class="meta-chip">${getServiceMode() === "semantic" ? t("semanticDetailTitle") : t("bookDetailTitle")}</span>
+            ${backButton}
+          </div>
+          <strong>${normalized.summary}</strong>
+          <p>${normalized.subtitle}</p>
+          ${descriptionBlock}
+          ${detailSignals}
+        </article>
+        <article class="detail-card">
+          <div class="detail-cover-column">
+            <span class="mode-ribbon">${modeBadgeLabel()}</span>
+            <img
+              class="detail-cover"
+              src="${featuredBook.cover_url}"
+              alt="${featuredBook.title} kapak gorseli"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              data-isbn="${featuredBook.isbn}"
+              onerror="this.src='/covers/default.svg'">
+          </div>
+          <div class="detail-body">
+            <span class="book-badge">${featuredBook.genre}</span>
+            <h3>${featuredBook.title}</h3>
+            <p class="detail-authors">${featuredBook.authors.join(", ")}</p>
+            <div class="detail-facts">${detailFacts}</div>
+          </div>
+        </article>
+      </section>
+    `;
+    void hydrateVisibleCovers(normalized.books);
+    return;
+  }
+
   resultElement.innerHTML = `
     <section class="result-highlight">
-      <article class="meta-card">
+      <article class="meta-card overview-card">
         <span class="meta-chip">${t("summaryChip")}</span>
-        ${backButton}
         <strong>${normalized.summary}</strong>
         <p>${normalized.subtitle}</p>
-        ${descriptionBlock}
       </article>
     </section>
     ${normalized.books.map(bookCard).join("")}
@@ -535,7 +639,7 @@ clearButton.addEventListener("click", () => {
 async function initializePage() {
   await loadTexts();
   applyStaticTexts();
-  updateServiceModeButtons();
+  setServiceMode(currentServiceMode);
   renderInitialState();
 }
 

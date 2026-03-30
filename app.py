@@ -1481,6 +1481,12 @@ class BookServiceHandler(BaseHTTPRequestHandler):
         if path == "/styles.css":
             self.serve_static("styles.css", "text/css; charset=utf-8")
             return
+        if path == "/favicon.ico":
+            self.serve_static("favicon.ico", "image/x-icon")
+            return
+        if path == "/favicon-v2.ico":
+            self.serve_static("favicon-v2.ico", "image/x-icon")
+            return
         if path == "/texts.json":
             self.serve_static("texts.json", "application/json; charset=utf-8")
             return

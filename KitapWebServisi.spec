@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['build_assets\\kitapwebservisi.ico'],
+    icon=['build_assets\\app_icon.ico'],
 )
 coll = COLLECT(
     exe,
