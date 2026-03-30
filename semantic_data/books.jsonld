@@ -1,0 +1,2131 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Collection",
+  "@id": "http://127.0.0.1:8000/semantic/collections/Semantic%20Kitap%20Veri%20Kumesi",
+  "name": "Semantic Kitap Veri Kumesi",
+  "description": "Kaynak: Dosya tabanli semantic veri",
+  "numberOfItems": 39,
+  "hasPart": [
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750718533",
+      "name": "1984",
+      "isbn": "9789750718533",
+      "genre": "Distopya",
+      "datePublished": "2021",
+      "description": "George Orwell’in kült kitabı Bin Dokuz Yüz Seksen Dört, yazarın geleceğe ilişkin bir kâbus senaryosudur. Bireyselliğin yok edildiği, zihnin kontrol altına alındığı, insanların makineleşmiş kitlelere dönüştürüldüğü totaliter bir dünya düzeni, romanda inanılmaz bir hayal gücüyle, en ince ayrıntısına kadar kurgulanmıştır. Geçmişte ve günümüzde dünya sahnesinde tezgâhlanan oyunlar düşünüldüğünde, ütopik olduğu kadar gerçekçi bir romandır Bin Dokuz Yüz Seksen Dört. Güncelliğini hiçbir zaman yitirmeyen bir başyapıttır; yalnızca yarına değil, bugüne de ilişkin bir uyarı çığlığıdır.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/George%20Orwell",
+          "name": "George Orwell"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789754700862",
+      "name": "Benim Adım Kırmızı",
+      "isbn": "9789754700862",
+      "genre": "Tarihi Roman",
+      "datePublished": "2022",
+      "description": "Orhan Pamuk’un “en renkli ve en iyimser romanım” dediği “Benim Adım Kırmızı”, 1591 yılında İstanbul’da karlı dokuz kış gününde geçiyor. İki küçük oğlu birbirleriyle sürekli çatışan güzel Şeküre, dört yıldır savaştan dönmeyen kocasının yerine kendine yeni bir koca, sevgili aramaya başlayınca, o sırada babasının tek tek eve çağırdığı saray nakkaşlarını saklandığı yerden seyreder. Eve gelen usta nakkaşlar, babasının denetimi altında Osmanlı Padişahı’nın gizlice yaptırttığı bir kitap için Frenk etkisi taşıyan tehlikeli resimler yapmaktadırlar. Aralarından biri öldürülünce, Şeküre’ye âşık, teyzesinin oğlu Kara devreye girer. İstanbul’da bir vaizin etrafında toplanmış, tekkelere karşı bir çevrenin baskıları, pahalılık ve korku hüküm sürerken, geceleri bir kahvede toplanan nakkaşlar ve hattatlar sivri dilli bir meddahın anlattığı hikâyelerle eğlenirler. Herkesin kendi sesiyle konuştuğu, ölülerin, eşyaların dillendiği, ölüm, sanat, aşk, evlilik ve mutluluk üzerine bu kitap, aynı zamanda eski resim sanatının unutulmuş güzelliklerine bir ağıt.",
+      "image": "http://127.0.0.1:8000/covers/benimadimkirmizi.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Orhan%20Pamuk",
+          "name": "Orhan Pamuk"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Yap%C4%B1%20Kredi%20Yay%C4%B1nlar%C4%B1",
+        "name": "Yapı Kredi Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053608486",
+      "name": "Beyaz Diş",
+      "isbn": "9786053608486",
+      "genre": "Macera",
+      "datePublished": "2017",
+      "description": "Jack London’ın Issız Diyarı, yabanı, buz kalpli Kuzey Toprakları’ndaki hayatı konu edindiği ikinci romanı Beyaz Diş’ tir. Vahşetin Çağrısı’ na kendini bırakmış bir annenin yavrusu Beyaz Diş’ in diyarıdır anlatılan. Onun hayranlık uyandırıcı zekâsı ve içgüdüleriyle kendini var edişinin ve “insan tanrılar” ın yaşamına geri dönüşünün enfes hikâyesi…",
+      "image": "http://127.0.0.1:8000/covers/beyazdis.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Jack%20London",
+          "name": "Jack London"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326816",
+      "name": "Bilinmeyen Bir Kadinın Mektubu",
+      "isbn": "9786053326816",
+      "genre": "Novella",
+      "datePublished": "2019",
+      "description": "Bilinmeyen Bir Kadının Mektubu ; Stefan Zweig’ın 1922 tarihli bu novellası, saplantılı aşk üzerine yazılmış en çarpıcı metinlerden biridir. Hayatı boyunca kendisinin farkında bile olmayan bir adamı umutsuzca sevmiş bir kadının yürek parçalayan aşk itirafıdır. Aşkının nesnesi olan kişi ise ömrü boyunca bir kez olsun söz ve eylemlerinin başkalarının hayatları üzerindeki etkisini düşünmemiştir.Zweig bu yapıtında insanların iç âlemlerine girmek ve onları gerçekten anlamak için toplum önündeki duruş ve davranışlarından yola çıkılamayacağına da dikkat çeker. Bu son derece tahripkâr karşılıksız aşkın hikâyesi, 1948 yılında Alman yönetmen Max Ophüls’ün imzasını taşıyan unutulmaz bir Hollywood klasiğine de ilham vermiştir.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Stefan%20Zweig",
+          "name": "Stefan Zweig"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738614",
+      "name": "Bir Kış Gecesi Eğer Bir Yolcu",
+      "isbn": "9789750738614",
+      "genre": "Postmodern Roman",
+      "datePublished": "2016",
+      "description": "Okur ile metin ilişkisini oyunsu biçimde ele alan, anlatı üzerine kurulmuş deneysel roman.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İtalyanca",
+      "award": "",
+      "keywords": [
+        "postmodernizm",
+        "okur",
+        "anlatı",
+        "kurmaca"
+      ],
+      "originalLanguage": "İtalyanca",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Italo%20Calvino",
+          "name": "Italo Calvino"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/YKY",
+        "name": "YKY"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Eren%20Y%C3%BCcesan%20Cendey",
+        "name": "Eren Yücesan Cendey"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/D%C3%BCnya%20Edebiyat%C4%B1",
+        "name": "Dünya Edebiyatı"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738524",
+      "name": "Bülbülü Öldürmek",
+      "isbn": "9789750738524",
+      "genre": "Dünya Klasikleri",
+      "datePublished": "2020",
+      "description": "Amerikan Güneyi'nde ırkçılık, adalet ve çocuk bakışı üzerinden toplum eleştirisi sunan modern klasik.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "Pulitzer Prize",
+      "keywords": [
+        "adalet",
+        "ırkçılık",
+        "çocuk anlatıcı",
+        "toplum"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Harper%20Lee",
+          "name": "Harper Lee"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Sel%20Yay%C4%B1nc%C4%B1l%C4%B1k",
+        "name": "Sel Yayıncılık"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/%C3%9Clker%20%C4%B0nce",
+        "name": "Ülker İnce"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Modern%20Klasikler",
+        "name": "Modern Klasikler"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738610",
+      "name": "Cesur Yeni Dünya",
+      "isbn": "9789750738610",
+      "genre": "Distopya",
+      "datePublished": "2020",
+      "description": "Bireyselliğin tasarlanmış mutluluk düzeni içinde silindiği geleceği anlatan klasik distopya.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "distopya",
+        "biyopolitika",
+        "teknoloji",
+        "toplum"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Aldous%20Huxley",
+          "name": "Aldous Huxley"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0thaki%20Yay%C4%B1nlar%C4%B1",
+        "name": "İthaki Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/%C3%9Cmit%20Tosun",
+        "name": "Ümit Tosun"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Bilimkurgu%20Klasikleri",
+        "name": "Bilimkurgu Klasikleri"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326748",
+      "name": "Dava",
+      "isbn": "9786053326748",
+      "genre": "Klasik",
+      "datePublished": "2020",
+      "description": "Dava yazılışından bir süre sonra dünya sahnesine çıkan, yurttaşlık haklarının askıya alındığı, bir sivil itaatsizlik imasının dahi zulümle karşılandığı totaliter rejimlere dair bir öngörü ve eleştiri olarak yorumlanır çoğunlukla. Nazi Almanya’sına dair bir “önsezi” barındırdığı söylenebilir belki. Erişilmez bir otorite tarafından yöneltilen ve ne olduğu hiçbir zaman açıklanmayan bir suçlamayla karşı karşıya kalan Josef K.’nın davasında, mahkemeye dinsel ya da metafizik bir otorite de atfedilebilir. Kafka Dava’da suçu yalnızca bir eylem olarak tanımlamayıp zanlının “kötü niyeti”yle de ilişkilendiren ve suçtan çok suçluya odaklanan absürd bir hukuk sistemi paradigması inşa eder. Kuramsal olarak ortada yasadışı bir eylem olmaksızın suçu mümkün kılan bir sistemdir bu. Ancak Kafka suç, sorumluluk ve özgürlük üzerine yazarken bir sistem ya da doktrin ortaya koymaz, çözüm önermez. Okuru ister istemez içine çeken bu karanlık dünya tasavvurunun tartışmaya açık olmayan tek bir özelliği varsa, o da müphemliğidir.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Franz%20Kafka",
+          "name": "Franz Kafka"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738607",
+      "name": "Dublinliler",
+      "isbn": "9789750738607",
+      "genre": "Öykü",
+      "datePublished": "2019",
+      "description": "Dublin kent yaşamını, sıradan bireylerin iç dünyalarını ve modern hayatın sıkışmışlığını öyküler aracılığıyla anlatan eser.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "öykü",
+        "şehir",
+        "modernizm",
+        "gündelik yaşam"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/James%20Joyce",
+          "name": "James Joyce"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0leti%C5%9Fim%20Yay%C4%B1nlar%C4%B1",
+        "name": "İletişim Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Murat%20Belge",
+        "name": "Murat Belge"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Modern%20Klasikler",
+        "name": "Modern Klasikler"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053754794",
+      "name": "Dune",
+      "isbn": "9786053754794",
+      "genre": "Bilim Kurgu",
+      "datePublished": "2021",
+      "description": "Dune, genç Paul Atreides’in hikâyesini anlatır. Atreides’in ailesi, evrendeki en önemli ve en değerli madde olan melanj ‘baharatının’ tek kaynağı olarak bilinen Arrakis gezegeninin kontrolünü kabul etmiştir.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Frank%20Herbert",
+          "name": "Frank Herbert"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Ithaki%20Yayinlari",
+        "name": "Ithaki Yayinlari"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326755",
+      "name": "Dönüşüm",
+      "isbn": "9786053326755",
+      "genre": "Klasik",
+      "datePublished": "2019",
+      "description": "İlk kez 1915’te Die Weissen Blaetter adlı aylık dergide yayımlanan Dönüşüm, Kafka’nın en uzun ve en tanınmış öyküsüdür ve yayımlanmasının üzerinden nerdeyse bir asır geçmesine rağmen hâlâ tüm dünyada en çok okunan kitaplar arasındadır.",
+      "image": "http://127.0.0.1:8000/covers/donusum.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Franz%20Kafka",
+          "name": "Franz Kafka"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053757818",
+      "name": "Fahrenheit 451",
+      "isbn": "9786053757818",
+      "genre": "Bilim Kurgu",
+      "datePublished": "2019",
+      "description": "Guy Montag bir itfaiyeciydi. Televizyonun hüküm sürdüğü bu dünyada kitaplar ise yok olmak üzereydi zira itfaiyeciler yangın söndürmek yerine ortalığı ateşe veriyordu. Montag’ın işi ise yasadışı olanların en tehlikelisini yakmaktı: Kitapları.",
+      "image": "http://127.0.0.1:8000covers/451.jpg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "sansür",
+        "kitap",
+        "distopya",
+        "özgürlük"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Ray%20Bradbury",
+          "name": "Ray Bradbury"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Ithaki%20Yayinlari",
+        "name": "Ithaki Yayinlari"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Dost%20K%C3%B6rpe",
+        "name": "Dost Körpe"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Bilimkurgu%20Klasikleri",
+        "name": "Bilimkurgu Klasikleri"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738602",
+      "name": "Fareler ve İnsanlar",
+      "isbn": "9789750738602",
+      "genre": "Roman",
+      "datePublished": "2018",
+      "description": "Fareler ve İnsanlar, insan doğasının kadim çıkmazlarına dair usta işi bir John Steinbeck kitabı.Birbirlerine hiç mi hiç benzemeyen iki arkadaşın; ufak tefek ve zeki George ile iriyarı ve aklı kıt Lennie’nin hikâyesini kaleme alıyor Steinbeck. Salinas Vadisi’ndeki bir çiftlikte güçbela iş bulan ikili hayallerini gerçekleştirme planları yapmaya başlar. Fakat küçük bir toprak parçası alıp çiftçilik yaparak kendi kendilerine yetme hayalleri, birkaç günde yaşanan olaylarla bir çıkmaz yola girer. Fareler ve İnsanlar, Büyük Bunalım döneminin binbir zorluğuyla mücadele eden tarım işçilerine doğrultulan bir dürbün, uzakları göz önüne getiren çarpıcı bir novella.",
+      "image": "http://127.0.0.1:8000/covers/farelerveinsanlar.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/John%20Steinbeck",
+          "name": "John Steinbeck"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Sel%20Yay%C4%B1nlar%C4%B1",
+        "name": "Sel Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789755705859",
+      "name": "Gazap Üzümleri",
+      "isbn": "9789755705859",
+      "genre": "Roman",
+      "datePublished": "2016",
+      "description": "Bir cehennem kaç acıyla oluşur bu dünyada? Toz fırtınalarıyla tarladaki mahsulün mahvolması, Büyük Buhran’da bankaların topraklara el koyması ve sonunda, göçle gelen sefalet… Bir otomobili kamyona dönüştürerek çıktıkları mecburi yolculukta, acılarını ve açlıklarını, düşlerini ve öfkelerini de peşlerinden sürüklüyor Joad ailesi. Gazap Üzümleri, kaygı dolu günleri sessiz bir başkaldırıyla aşmaya çalışan insanların romanı.",
+      "image": "http://127.0.0.1:8000/covers/gazapuzumleri.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/John%20Steinbeck",
+          "name": "John Steinbeck"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Sel%20Yay%C4%B1nlar%C4%B1",
+        "name": "Sel Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9780060853983",
+      "name": "Good Omens",
+      "isbn": "9780060853983",
+      "genre": "Fantastik",
+      "datePublished": "2006",
+      "description": "1655 yılında yazılmış ve şimdiye kadarki en doğru kehanet kitabı olan Cadı Agnes Çatlak’ın Dakîk ve Kat’î Kehanetleri’ne göre, cumartesi günü dünyanın sonu. Önümüzdeki Cumartesi. İyilik ve Kötülük orduları toplanıyorlar. Her şey Büyük Plan’a uygun ilerliyor gibi. Yalnız ufak bir pürüz var. Birazcık müşkülpesent bir melek ile sefahat düşkünü bir iblis yaklaşan bu coşku dolu anın gelişini hiç de iple çekmiyorlar. Ha unutmadan, birileri Deccal’ı yanlış yere göndermişe benziyor.",
+      "image": "http://127.0.0.1:8000/covers/goodomens.jpg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "kıyamet",
+        "fantastik",
+        "mizah",
+        "melek",
+        "iblis"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Neil%20Gaiman",
+          "name": "Neil Gaiman"
+        },
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Terry%20Pratchett",
+          "name": "Terry Pratchett"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/William%20Morrow",
+        "name": "William Morrow"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Modern%20Fantasy%20Classics",
+        "name": "Modern Fantasy Classics"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738613",
+      "name": "Göçebe",
+      "isbn": "9789750738613",
+      "genre": "Türk Edebiyatı",
+      "datePublished": "2017",
+      "description": "Anadolu coğrafyasını ve insanını destansı anlatımıyla aktaran güçlü bir roman.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "Türkçe",
+      "award": "",
+      "keywords": [
+        "anadolu",
+        "toplum",
+        "epik anlatı",
+        "kırsal yaşam"
+      ],
+      "originalLanguage": "Türkçe",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Ya%C5%9Far%20Kemal",
+          "name": "Yaşar Kemal"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Yap%C4%B1%20Kredi%20Yay%C4%B1nlar%C4%B1",
+        "name": "Yapı Kredi Yayınları"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/T%C3%BCrk%20Edebiyat%C4%B1",
+        "name": "Türk Edebiyatı"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750802942",
+      "name": "Harry Potter ve Felsefe Taşı",
+      "isbn": "9789750802942",
+      "genre": "Fantastik",
+      "datePublished": "2016",
+      "description": "Sıradan bir çocuk gibi yaşarken, kendini büyücülük dünyasının içinde bulan Harry Potter’ın maceralarının ilk bölümü, dünya yayıncılık tarihinde “en kısa sürede en çok satan kitap” unvanına sahip Harry Potter ve Felsefe Taşı, Ülkü Tamer’in çevirisiyle, Türkiye’de. J. K. Rowling’in Harry Potter ve Felsefe Taşı adlı kitabı, Yapı Kredi Yayınları’ndan çıktı. Harry Potter sıradan bir çocuk olduğunu sanırken, bir baykuşun getirdiği mektuplarla hayatı değişir: Başvurmadığı halde Hogwarts Cadılık ve Büyücülük Okulu’na kabul edilmiştir. Burada birbirinden ilginç dersler alır, iki arkadaşıyla birlikte maceradan maceraya koşar... ",
+      "image": "http://127.0.0.1:8000/covers/harrypotterfelsefetasi.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/J.%20K.%20Rowling",
+          "name": "J. K. Rowling"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Yap%C4%B1%20Kredi%20Yay%C4%B1nlar%C4%B1",
+        "name": "Yapı Kredi Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750719387",
+      "name": "Hayvan Çiftligi",
+      "isbn": "9789750719387",
+      "genre": "Politik Roman",
+      "datePublished": "2023",
+      "description": "İngiliz yazar George Orwell (1903-1950), ülkemizde daha çok 1984 adlı kitabıyla tanınır. Hayvan Çiftliği, onun çağdaş klasikler arasına girmiş ikinci ünlü yapıtıdır. Orwell, bu kitabında, hayvanların insanlara karşı başkaldırısını ve kendi yönetimlerini kurmalarını anlatır. Ancak zamanla, yeni liderleri Domuz Napoleon'un baskıcı rejimi altında, çiftlikteki hayvanlar eski durumlarından daha kötü bir hale gelirler. Hayvan Çiftliği, totaliter rejimlerin yükselişi ve yozlaşması üzerine keskin bir eleştiri sunar ve siyasi alegori olarak büyük bir etki yaratır.",
+      "image": "http://127.0.0.1:8000/covers/hayvanciftligi.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/George%20Orwell",
+          "name": "George Orwell"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789753425988",
+      "name": "Hobbit",
+      "isbn": "9789753425988",
+      "genre": "Fantastik",
+      "datePublished": "2022",
+      "description": "Hobbit, tüm zamanların en sevilen yazarlarından J.R.R. Tolkien’in zihninden yayılan hikâyeler aracılığıyla elflerin, büyücülerin, cücelerin, ejderhaların, orkların ve Yüzüklerin Efendisi’yle Silmarillion’da tasvir edilen birçok diğer yaratığın evi olan büyüleyici Orta Dünya’nın kapısını açan unutulmaz bir klasik.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/J.%20R.%20R.%20Tolkien",
+          "name": "J. R. R. Tolkien"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Ithaki%20Yayinlari",
+        "name": "Ithaki Yayinlari"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9780062464316",
+      "name": "Homo Deus",
+      "isbn": "9780062464316",
+      "genre": "Popüler Bilim",
+      "datePublished": "2017",
+      "description": "İnsanlığın geleceğini, yapay zekâyı, biyoteknolojiyi ve veri çağının etik sorunlarını tartışan düşünsel bir çalışma.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "gelecek",
+        "yapay zeka",
+        "teknoloji",
+        "biyoteknoloji"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Yuval%20Noah%20Harari",
+          "name": "Yuval Noah Harari"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Harper",
+        "name": "Harper"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Big%20Ideas",
+        "name": "Big Ideas"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326786",
+      "name": "Karamazov Kardeşler",
+      "isbn": "9786053326786",
+      "genre": "Klasik",
+      "datePublished": "2021",
+      "description": "Fyodor Mihayloviç Dostoyevski (1821-1881): İlk romanı İnsancıklar 1846’da yayımlandı. Ünlü eleştirmen V. Byelinski bu eser üzerine Dostoyevski’den geleceğin büyük yazarı olarak söz etti. Ancak daha sonra yayımlanan öykü ve romanları, çağımızda edebiyat klasikleri arasında yer alsa da, o dönemde fazla ilgi görmedi. Yazar 1849’da  I. Nikola’nın baskıcı rejimine muhalif Petraşevski grubunun üyesi olduğu gerekçesiyle tutuklandı. Kurşuna dizilmek üzereyken cezası sürgün ve zorunlu askerliğe çevrildi. Cezasını tamamlayıp Sibirya’dan döndükten sonra Petersburg’da Vremya dergisini çıkarmaya başladı, yazdığı romanlarla tekrar eski ününe kavuştu. Karamazov Kardeşler Dostoyevski’nin son başyapıtıdır.",
+      "image": "http://127.0.0.1:8000/covers/karamazov.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Fyodor%20Dostoyevski",
+          "name": "Fyodor Dostoyevski"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738608",
+      "name": "Karamazovlar",
+      "isbn": "9789750738608",
+      "genre": "Felsefi Roman",
+      "datePublished": "2023",
+      "description": "İnanç, suç, ahlak ve aile çatışmalarını büyük bir anlatı içinde işleyen felsefi roman.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "Rusça",
+      "award": "",
+      "keywords": [
+        "ahlak",
+        "suç",
+        "inanç",
+        "aile"
+      ],
+      "originalLanguage": "Rusça",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Fyodor%20Dostoyevski",
+          "name": "Fyodor Dostoyevski"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Ergin%20Altay",
+        "name": "Ergin Altay"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Hasan%20Ali%20Y%C3%BCcel%20Klasikler%20Dizisi",
+        "name": "Hasan Ali Yücel Klasikler Dizisi"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738606",
+      "name": "Körlük",
+      "isbn": "9789750738606",
+      "genre": "Distopya",
+      "datePublished": "2021",
+      "description": "Toplumsal düzenin ani bir felaket karşısında nasıl çöktüğünü alegorik ve çarpıcı bir anlatımla işleyen roman.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "Portekizce",
+      "award": "Nobel Prize linked author",
+      "keywords": [
+        "distopya",
+        "toplum",
+        "felaket",
+        "ahlak"
+      ],
+      "originalLanguage": "Portekizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Jose%20Saramago",
+          "name": "Jose Saramago"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/K%C4%B1rm%C4%B1z%C4%B1%20Kedi",
+        "name": "Kırmızı Kedi"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/I%C5%9F%C4%B1k%20Erg%C3%BCden",
+        "name": "Işık Ergüden"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Modern%20D%C3%BCnya%20Edebiyat%C4%B1",
+        "name": "Modern Dünya Edebiyatı"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789753638021",
+      "name": "Kürk Mantolu Madonna",
+      "isbn": "9789753638021",
+      "genre": "Roman",
+      "datePublished": "2021",
+      "description": "Her gün, daima öğleden sonra oraya gidiyor, koridorlardaki resimlere bakıyormuş gibi ağır ağır, fakat büyük bir sabırsızlıkla asıl hedefine varmak isteyen adımlarımı zorla zapt ederek geziniyor, rastgele gözüme çarpmış gibi önünde durduğum “Kürk Mantolu Madonna”yı seyre dalıyor, ta kapılar kapanıncaya kadar orada bekliyordum.” Kimi tutkular rehberimiz olur yaşam boyunca. Kollarıyla bizi sarar. Sorgulamadan peşlerinden gideriz ve hiç pişman olmayacağımızı biliriz. Yapıtlarında insanların görünmeyen yüzlerini ortaya çıkaran Sabahattin Ali, bu kitabında güçlü bir tutkunun resmini çiziyor. Düzenin sildiği kişiliklere, yaşamın uçuculuğuna ve aşkın olanaksızlığına (?) dair, yanıtlanması zor sorular soruyor.",
+      "image": "http://127.0.0.1:8000/covers/kurkmantolumadonna.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Sabahattin%20Ali",
+          "name": "Sabahattin Ali"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Yap%C4%B1%20Kredi%20Yay%C4%B1nlar%C4%B1",
+        "name": "Yapı Kredi Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750719356",
+      "name": "Küçük Prens",
+      "isbn": "9789750719356",
+      "genre": "Çocuk Klasikleri",
+      "datePublished": "2020",
+      "description": "Saint-Exupéry 1943’te Küçük Prens’i yayımladığında, dünya çapında muazzam bir başarı kazanacak bir yapıta imza attığını tahmin bile edemezdi. Bu bilgelikle dolu, büyüleyici masal aradan geçen onca yıla rağmen bütün dünyada her yaştan okurun yüreğini ısıtmaya devam ediyor. Uçağı Sahra çölüne düşen bir pilotun burada başka bir gezegenden gelen küçük prensle karşılaşması, biri doğa yasalarıyla yönetilen, diğeri hayal gücünün sınır tanımadığı iki farklı dünyanın karşı karşıya gelmesidir aslında. “Bana bir koyun çiz…” der küçük prens pilota. Hayatta anlaşılmayan olaylar karşısında onların gizemine boyun eğmekten başka çare yoktur. Yetişkin dünyasının kaygıları bir çocuğun gözüyle bakıldığında ne kadar da anlamsızdır. Sevgiye ve dostluğa dair bu küçük adamdan öğrenilecek ne çok şey vardır. Zira aslolan gözle görülmez, onu sadece kalp görebilir. Küçük prensin ziyaret ettiği gezegenlerde başından geçenler bizi bugün de insanlık durumu üzerine derin düşüncelere sevk eder.",
+      "image": "http://127.0.0.1:8000/covers/kucukprens.jpg",
+      "inLanguage": "Fransızca",
+      "award": "",
+      "keywords": [
+        "felsefi masal",
+        "dostluk",
+        "sevgi",
+        "gezegenler"
+      ],
+      "originalLanguage": "Fransızca",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Antoine%20de%20Saint-Exupery",
+          "name": "Antoine de Saint-Exupery"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20%C3%87ocuk%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Çocuk Yayınları"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/D%C3%BCnya%20%C3%87ocuk%20Klasikleri",
+        "name": "Dünya Çocuk Klasikleri"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786052956175",
+      "name": "Martin Eden",
+      "isbn": "9786052956175",
+      "genre": "Roman",
+      "datePublished": "2019",
+      "description": "Jack London’ın yarı otobiyografik romanı Martin Eden, 20. yüzyıl başında sosyal ve ideolojik meseleler ağırlıklı içeriğiyle Amerikan edebiyatında büyük ölçüde kabul görmüştür. London farklı sınıflar arasındaki zihniyet ve değer farklarını gözlerimizin önüne sererken, statü ve servetin Amerikan toplumundaki hayati önemine işaret eder. Romanın ana temalarından biri, başarı ve refah yolunun sosyal sınıf farkı gözetilmeksizin herkese açık olduğu şeklinde özetlenebilecek Amerikan Rüyası’dır. Ya da bu idealin yarattığı muazzam hayal kırıklığı…",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Jack%20London",
+          "name": "Jack London"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789753638029",
+      "name": "Saatleri Ayarlama Enstitüsü",
+      "isbn": "9789753638029",
+      "genre": "Roman",
+      "datePublished": "2019",
+      "description": "Ahmet Hamdi Tanpınar, Saatleri Ayarlama Enstitüsü’nde Hayri İrdal, Halit Ayarcı, Dr. Ramiz ve ötekilerin yaşantı ve eylemleriyle modern bir Türkiye alegorisi inşa ediyor. Zamanlar ve yaşantılar arasından geçiş krizlerinin insan ve toplumdaki karşılıklarını bürokrasi ironisi üzerinden, derinlikli bir entelektüel arka planla inşa ederken, hüznün müstesna bir mizah şöleniyle nasıl aşılabileceğinin de imkânlarını sunuyor. Saatleri Ayarlama Enstitüsü, dünün olduğu gibi, bugünün ve geleceğin romanıdır.",
+      "image": "http://127.0.0.1:8000/covers/saatleriayarlamaenstitusu.jpg",
+      "inLanguage": "Türkçe",
+      "award": "",
+      "keywords": [
+        "modernleşme",
+        "bürokrasi",
+        "ironi"
+      ],
+      "originalLanguage": "Türkçe",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Ahmet%20Hamdi%20Tanp%C4%B1nar",
+          "name": "Ahmet Hamdi Tanpınar"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Dergah%20Yay%C4%B1nlar%C4%B1",
+        "name": "Dergah Yayınları"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/T%C3%BCrk%20Edebiyat%C4%B1%20Modern%20Klasikler",
+        "name": "Türk Edebiyatı Modern Klasikler"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9780062316097",
+      "name": "Sapiens",
+      "isbn": "9780062316097",
+      "genre": "Popüler Bilim",
+      "datePublished": "2015",
+      "description": "İnsan türünün avcı-toplayıcı günlerinden günümüz teknolojik çağına kadar uzanan geniş tarihsel yolculuğunu yorumlayan etkili bir popüler bilim çalışması.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "tarih",
+        "antropoloji",
+        "medeniyet",
+        "insanlık"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Yuval%20Noah%20Harari",
+          "name": "Yuval Noah Harari"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Harper",
+        "name": "Harper"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Big%20Ideas",
+        "name": "Big Ideas"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326809",
+      "name": "Satranç",
+      "isbn": "9786053326809",
+      "genre": "Novella",
+      "datePublished": "2018",
+      "description": "Stefan Zweig’ın 1942’de intihar etmeden önce yazdığı son kurmaca metin olan Satranç, Nazi Almanyası’nı görgüsüz, “mizah duygusundan ve incelikten yoksun”, “yenilmez” şampiyonun kişiliğinde cisimleştirmesiyle de apayrı bir boyut kazanıyor.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Stefan%20Zweig",
+          "name": "Stefan Zweig"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786052958155",
+      "name": "Sefiller",
+      "isbn": "9786052958155",
+      "genre": "Dünya Klasikleri",
+      "datePublished": "2018",
+      "description": "Victor Hugo (1802-1885): Fransız edebiyatının gelmiş geçmiş en büyük yazarlarındandır. Şiirleri, oyunları ve romanları ile tanınır. Romantizm akımının Fransa’daki temsilcisidir. Edebiyat alanındaki devasa başarılarının yanında politik hayatta da etkin bir rol üstlendi; bu nedenle sürgün cezasına çarptırıldı, cezasını tamamlamasına rağmen İmparatorluk yıkılana dek Fransa’ya dönmedi. İlk kez 1862 yılında yayımlanan Sefiller yazarın Notre-Dame’ın Kamburu ile “din”, Deniz İşçileri ile “doğa” konularını işlediği roman üçlemesinin “toplum”u ele alan, en görkemli ayağıdır. Bu destansı roman Fransız toplumundan yola çıkarak, kozmolojik bir bakış ve eşsiz bir duyarlılıkla insanlığa ulaşır. Fantine’in, Cosette’in, Marius’ün, Saint-Denis Sokağı barikatlarının; Paris’in, Javert’in ve Jean Valjean’ın sefaletten sevgiye, felaketten iyiliğe ve karanlıktan aydınlığa uzanan hikâyeleri Hasan Âli Yücel Klasikler Dizisi’nin 250. kitabında okurlarla buluşuyor.",
+      "image": "http://127.0.0.1:8000/covers/sefiller.jpg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Victor%20Hugo",
+          "name": "Victor Hugo"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750726439",
+      "name": "Simyacı",
+      "isbn": "9789750726439",
+      "genre": "Roman",
+      "datePublished": "2017",
+      "description": "Simyacı, Brezilyalı eski şarkı sözü yazarı Paulo Coelho'nun, yayınlandığı 1988 yılından bu yana dünyayı birbirine katan, eleştirmenler tarafından bir `fenomen' olarak değerlendirilen üçüncü romanı. Simyacı, altı yılda kırk iki ülkede yedi milyondan fazla sattı. Bu, Gabriel Garcia Marquez'den bu yana görülmemiş bir olay. Yüreğinde, çocukluğunu yitirmemiş olan okurlar için bir `klasik' kimliği kazanan Simyacı'yı Saint-Exupery'nin Küçük Prens'i ve Richard Bach'ın Martı Jonathan Livingston'u ile karşılaştıranlar var (Publishers Weekly). Simyacı, İspanya'dan kalkıp Mısır Piramitlerinin eteklerinde hazinesini aramaya giden Endülüslü çoban Santiago'nun masalsı yaşamının felsefi öyküsü. Sanki bir `nasihatnâme': `Yazgına nasıl egemen olacaksın, mutluluğunu nasıl kuracaksın?' sorularına yanıt arayan bir hayat ve ahlak kılavuzu. Mistik bir peri masalına benzeyen romanın altı yılda, yedi milyondan fazla okur bulmasının gizi, kuşkusuz, onun bu kılavuzluk niteliğinden kaynaklanıyor. Simyacı'yı okumak, herkes daha uykudayken, güneşin doğuşunu seyretmek için şafak vakti uyanmaya benziyor.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Paulo%20Coelho",
+          "name": "Paulo Coelho"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326779",
+      "name": "Suç ve Ceza",
+      "isbn": "9786053326779",
+      "genre": "Klasik",
+      "datePublished": "2022",
+      "description": "Fyodor Mihayloviç Dostoyevski (1821-1881): İlk romanı İnsancıklar 1846’da yayımlandı. Ünlü eleştirmen V. Byelinski bu eser üzerine Dostoyevski’den geleceğin büyük yazarı olarak söz etti. Ancak daha sonra yayımlanan öykü ve romanları, çağımızda edebiyat klasikleri arasında yer alsa da, o dönemde fazla ilgi görmedi. Yazar 1849’da I. Nikolay’ın baskıcı rejimine muhalif Petraşevski grubunun üyesi olduğu gerekçesiyle tutuklandı. Kurşuna dizilmek üzereyken cezası sürgün ve zorunlu askerliğe çevrildi. Cezasını tamamlayıp Sibirya’dan döndükten sonra Petersburg’da Vremya dergisini çıkarmaya başladı, yazdığı romanlarla tekrar eski ününe kavuştu. Suç ve Ceza Dostoyevski’nin bütün dünyada en çok okunan başyapıtıdır.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Fyodor%20Dostoyevski",
+          "name": "Fyodor Dostoyevski"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789754700114",
+      "name": "Tutunamayanlar",
+      "isbn": "9789754700114",
+      "genre": "Roman",
+      "datePublished": "2020",
+      "description": "Türk edebiyatının en önemli eserlerinden biri olan Tutunamayanlar’ı Berna Moran, “hem söyledikleri hem de söyleyiş biçimiyle bir başkaldırı” olarak niteler. Moran’a göre “Oğuz Atay’ın mizah gücü, duyarlılığı ve kullandığı teknik incelikler, Tutunamayanlar’ı büyük bir yeteneğin ürünü yapmış, yapıttaki bu yetkinlik Türk romanını çağdaş roman anlayışıyla aynı hizaya getirmiş ve ona çok şey kazandırmıştır.” Küçük burjuva dünyasını zekice alaya alan Atay “saldırısını, tutunanların anlamayacağı, red edeceği türden bir romanla yapar.” Tutunamayanlar, 1970 TRT Roman Ödülü’nü kazanmıştı.",
+      "image": "http://127.0.0.1:8000/covers/tutunamayanlar.jpg",
+      "inLanguage": "Türkçe",
+      "award": "TRT Roman Ödülü",
+      "keywords": [
+        "yabancılaşma",
+        "modern birey",
+        "postmodern roman"
+      ],
+      "originalLanguage": "Türkçe",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Oguz%20Atay",
+          "name": "Oguz Atay"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0leti%C5%9Fim%20Yay%C4%B1nlar%C4%B1",
+        "name": "İletişim Yayınları"
+      },
+      "translator": null,
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/%C3%87a%C4%9Fda%C5%9F%20T%C3%BCrk%20Edebiyat%C4%B1",
+        "name": "Çağdaş Türk Edebiyatı"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786052652459",
+      "name": "Vakıf",
+      "isbn": "9786052652459",
+      "genre": "Bilim Kurgu",
+      "datePublished": "2020",
+      "description": "Psikotarih biliminin öncüsü Hari Seldon'ın tahminlerine göre galaktik savaş kaçınılmazdı. Bu durumu olabildiğince ertelemek adına iki Vakıf kurdu; biri imparatorluğun sahip olduğu binlerce yıllık bilgiyi korumakla yükümlüydü, diğerinin ise ne yeri ne de amacı biliniyordu.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Isaac%20Asimov",
+          "name": "Isaac Asimov"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Ithaki%20Yayinlari",
+        "name": "Ithaki Yayinlari"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9786053326762",
+      "name": "Yeraltından Notlar",
+      "isbn": "9786053326762",
+      "genre": "Klasik",
+      "datePublished": "2018",
+      "description": "Fyodor Mihayloviç Dostoyevski (1821-1881): İlk romanı İnsancıklar’ın çarpıcı konusu ve farklı kurgusuyla dikkatleri çekti. İnsan ruhunun derinliklerini sergileyiş gücüyle önemli bir yazar olarak ün kazandı. Ancak daha sonra yayımlanan eserleri o dönemde fazla ilgi görmedi. Dostoyevski 1849’da  I.Nikolay’ın baskıcı rejimine muhalif Petraşevski grubunun üyesi olduğu gerekçesiyle tutuklandı. Kurşuna dizilmek üzereyken cezası sürgün ve zorunlu askerliğe çevrildi. Sibirya sürgününden sonra yazdığı romanlarla tekrar eski ününe kavuştu. 1864’de Vremya dergisinde yayımladığı Yeraltından Notlar gerçek dünyadan kendini soyutlamış bir kişinin iç çatışmalarını ve hezeyanlarını konu alır. Bu roman Dostoyevski’nin daha sonra yazacağı büyük romanların ipuçlarını taşımaktadır.",
+      "image": "http://127.0.0.1:8000/covers/yeraltindannotlar.jpg",
+      "inLanguage": "Rusça",
+      "award": "",
+      "keywords": [
+        "iç monolog",
+        "yeraltı insanı",
+        "varoluş",
+        "psikoloji"
+      ],
+      "originalLanguage": "Rusça",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Fyodor%20Dostoyevski",
+          "name": "Fyodor Dostoyevski"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Mazlum%20Beyhan",
+        "name": "Mazlum Beyhan"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Hasan%20Ali%20Y%C3%BCcel%20Klasikler%20Dizisi",
+        "name": "Hasan Ali Yücel Klasikler Dizisi"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738605",
+      "name": "Yüzyıllık Yalnızlık",
+      "isbn": "9789750738605",
+      "genre": "Büyülü Gerçekçilik",
+      "datePublished": "2022",
+      "description": "Buendia ailesinin kuşaklar boyunca süren hikâyesi üzerinden Latin Amerika tarihini büyülü gerçekçilikle anlatan başyapıt.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İspanyolca",
+      "award": "Nobel Prize linked author",
+      "keywords": [
+        "aile",
+        "latin amerika",
+        "mit",
+        "büyülü gerçekçilik"
+      ],
+      "originalLanguage": "İspanyolca",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Gabriel%20Garcia%20Marquez",
+          "name": "Gabriel Garcia Marquez"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Se%C3%A7kin%20Selvi",
+        "name": "Seçkin Selvi"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/D%C3%BCnya%20Edebiyat%C4%B1",
+        "name": "Dünya Edebiyatı"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789752733732",
+      "name": "Yüzüklerin Efendisi",
+      "isbn": "9789752733732",
+      "genre": "Fantastik",
+      "datePublished": "2019",
+      "description": "Dünya ikiye bölünmüştür, denir Tolkien'ın yapıtı söz konusu olduğunda: Yüzüklerin Efendisi'ni okumuş olanlar ve okuyacak olanlar. 1997 ile birlikte, çok sayıda Türk okur da 'okumuş olanlar' safına geçme fırsatı buldu. Kitabın türkçe basımı Yüzüklerin Efendisi'ne duyulan ilginin evrenselliğini kanıtladı",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "",
+      "award": "",
+      "keywords": [],
+      "originalLanguage": "",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/J.%20R.%20R.%20Tolkien",
+          "name": "J. R. R. Tolkien"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Metis%20Yayinlari",
+        "name": "Metis Yayinlari"
+      },
+      "translator": null,
+      "isPartOf": null
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738612",
+      "name": "Zaman Makinesi",
+      "isbn": "9789750738612",
+      "genre": "Bilim Kurgu",
+      "datePublished": "2018",
+      "description": "Zaman yolculuğu fikrini edebiyat tarihinde ikonik hale getiren erken dönem bilimkurgu klasiği.",
+      "image": "http://127.0.0.1:8000/covers/default.svg",
+      "inLanguage": "İngilizce",
+      "award": "",
+      "keywords": [
+        "zaman yolculuğu",
+        "bilimkurgu",
+        "gelecek",
+        "evrim"
+      ],
+      "originalLanguage": "İngilizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/H.%20G.%20Wells",
+          "name": "H. G. Wells"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/%C4%B0%C5%9F%20Bankas%C4%B1%20K%C3%BClt%C3%BCr%20Yay%C4%B1nlar%C4%B1",
+        "name": "İş Bankası Kültür Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Levent%20Cinemre",
+        "name": "Levent Cinemre"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/Hasan%20Ali%20Y%C3%BCcel%20Klasikler%20Dizisi",
+        "name": "Hasan Ali Yücel Klasikler Dizisi"
+      }
+    },
+    {
+      "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://127.0.0.1:8000/semantic/ontology#",
+        "name": "schema:name",
+        "isbn": "schema:isbn",
+        "author": "schema:author",
+        "genre": "schema:genre",
+        "publisher": "schema:publisher",
+        "datePublished": "schema:datePublished",
+        "description": "schema:description",
+        "image": "schema:image",
+        "inLanguage": "schema:inLanguage",
+        "translator": "schema:translator",
+        "isPartOf": "schema:isPartOf",
+        "award": "schema:award",
+        "keywords": "schema:keywords",
+        "originalLanguage": "ex:originalLanguage",
+        "Book": "schema:Book",
+        "Person": "schema:Person",
+        "Organization": "schema:Organization"
+      },
+      "@type": "Book",
+      "@id": "http://127.0.0.1:8000/semantic/books/9789750738609",
+      "name": "Şeker Portakalı",
+      "isbn": "9789750738609",
+      "genre": "Roman",
+      "datePublished": "2021",
+      "description": "Ne güzel bir şeker portakalı fidanıymış bu! Hem bak, dikeni de yok. Pek de kişilik sahibiymiş, şeker portakalı olduğu ta uzaktan belli. Ben senin boyunda olsaydım başka şey istemezdim. Ama ben büyük bir ağaç istiyordum. İyi düşün, Zezé. Henüz gencecik bir fidan bu. Bir gün koca bir ağaca dönüşecek. Seninle beraber büyüyecek. İki kardeş gibi iyi anlaşacaksınız. Dalını gördün mü? Bir tanecik dalı olsa da sanki özellikle senin binmen için hazırlanmış bir ata benziyor.Brezilya edebiyatının klasiklerinden Şeker Portakalı, José Mauro de Vasconcelos’un başyapıtı kabul edilir. Yetişkinler dünyasının sınırlamalarına hayal gücüyle meydan okuyan Zezé’nin yoksulluk, acı ve ümit dolu hikâyesi yazarın çocukluğundan derin izler taşır.Beş yaşındaki Zezé hemen her şeyi tek başına öğrenir: sadece bilye oynamayı ve arabalara asılmayı değil, okumayı ve sokak şarkıcılarının ezgilerini de. En yakın sırdaşıysa, anlattıklarına kulak veren ve Minguinho adını verdiği bir şeker portakalı fidanıdır…",
+      "image": "http://127.0.0.1:8000/covers/sekerportakali.jpg",
+      "inLanguage": "Portekizce",
+      "award": "",
+      "keywords": [
+        "çocukluk",
+        "yoksulluk",
+        "büyüme",
+        "hayal gücü"
+      ],
+      "originalLanguage": "Portekizce",
+      "author": [
+        {
+          "@type": "Person",
+          "@id": "http://127.0.0.1:8000/semantic/authors/Jose%20Mauro%20de%20Vasconcelos",
+          "name": "Jose Mauro de Vasconcelos"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "@id": "http://127.0.0.1:8000/semantic/publishers/Can%20%C3%87ocuk%20Yay%C4%B1nlar%C4%B1",
+        "name": "Can Çocuk Yayınları"
+      },
+      "translator": {
+        "@type": "Person",
+        "@id": "http://127.0.0.1:8000/semantic/translators/Ayd%C4%B1n%20Eme%C3%A7",
+        "name": "Aydın Emeç"
+      },
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "@id": "http://127.0.0.1:8000/semantic/series/%C3%87ocuk%20ve%20Gen%C3%A7lik%20Klasikleri",
+        "name": "Çocuk ve Gençlik Klasikleri"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#233142"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" rx="36" fill="url(#g)"/>
+  <rect x="42" y="42" width="516" height="716" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <circle cx="490" cy="114" r="56" fill="#e3f6f5" opacity="0.9"/>
+  <rect x="72" y="120" width="160" height="10" rx="5" fill="#e3f6f5" opacity="0.75"/>
+  <text x="72" y="220" fill="#f8fafc" font-family="Georgia, serif" font-size="54" font-weight="700" style="white-space: pre-line">Kitap
+Kapagi</text>
+  <text x="72" y="510" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" style="white-space: pre-line">Yerel Gorsel</text>
+  <text x="72" y="574" fill="#e3f6f5" font-family="Segoe UI, sans-serif" font-size="24" letter-spacing="2">Book Service</text>
+  <path d="M72 640 C180 600, 260 710, 368 660 S510 610, 528 694" fill="none" stroke="#e3f6f5" stroke-width="8" stroke-linecap="round" opacity="0.85"/>
+  <text x="72" y="734" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="22" opacity="0.78">Yerel dogrulanmis kapak</text>
+</svg>

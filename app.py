@@ -1,12 +1,13 @@
 ﻿import json
 import mimetypes
+import re
 import shutil
 import sqlite3
 import sys
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import parse_qs, quote, unquote, urlparse
 
 
 if getattr(sys, "frozen", False):
@@ -19,8 +20,11 @@ else:
 DB_PATH = DATA_DIR / "database" / "books.db"
 BUNDLED_STATIC_DIR = RESOURCE_DIR / "static"
 STATIC_DIR = DATA_DIR / "static" if getattr(sys, "frozen", False) else BUNDLED_STATIC_DIR
+SEMANTIC_DATA_DIR = DATA_DIR / "semantic_data"
+SEMANTIC_DATA_PATH = SEMANTIC_DATA_DIR / "books.jsonld"
 OVERRIDES_PATH = DATA_DIR / "book_overrides.json"
 FALLBACK_COVER = "/covers/default.svg"
+BASE_URL = "http://127.0.0.1:8000"
 
 
 SAMPLE_BOOKS = [
@@ -308,6 +312,228 @@ SAMPLE_BOOKS = [
 ]
 
 
+SEMANTIC_ENRICHMENTS = {
+    "9789753638029": {
+        "original_language": "Türkçe",
+        "translator": "",
+        "series": "Türk Edebiyatı Modern Klasikler",
+        "award": "",
+        "keywords": ["modernleşme", "bürokrasi", "ironi"],
+    },
+    "9789754700114": {
+        "original_language": "Türkçe",
+        "translator": "",
+        "series": "Çağdaş Türk Edebiyatı",
+        "award": "TRT Roman Ödülü",
+        "keywords": ["yabancılaşma", "modern birey", "postmodern roman"],
+    },
+    "9780060853983": {
+        "original_language": "İngilizce",
+        "translator": "",
+        "series": "Modern Fantasy Classics",
+        "award": "",
+        "keywords": ["kıyamet", "fantastik", "mizah", "melek", "iblis"],
+    },
+    "9789750738609": {
+        "original_language": "Portekizce",
+        "translator": "Aydın Emeç",
+        "series": "Çocuk ve Gençlik Klasikleri",
+        "award": "",
+        "keywords": ["çocukluk", "yoksulluk", "büyüme", "hayal gücü"],
+    },
+    "9789750719356": {
+        "original_language": "Fransızca",
+        "translator": "",
+        "series": "Dünya Çocuk Klasikleri",
+        "award": "",
+        "keywords": ["felsefi masal", "dostluk", "sevgi", "gezegenler"],
+    },
+    "9786053757818": {
+        "original_language": "İngilizce",
+        "translator": "Dost Körpe",
+        "series": "Bilimkurgu Klasikleri",
+        "award": "",
+        "keywords": ["sansür", "kitap", "distopya", "özgürlük"],
+    },
+    "9786053326762": {
+        "original_language": "Rusça",
+        "translator": "Mazlum Beyhan",
+        "series": "Hasan Ali Yücel Klasikler Dizisi",
+        "award": "",
+        "keywords": ["iç monolog", "yeraltı insanı", "varoluş", "psikoloji"],
+    },
+}
+
+
+SEMANTIC_ONLY_BOOKS = [
+    {
+        "title": "Sapiens",
+        "authors": ["Yuval Noah Harari"],
+        "isbn": "9780062316097",
+        "genre": "Popüler Bilim",
+        "publisher": "Harper",
+        "publish_year": 2015,
+        "cover_url": FALLBACK_COVER,
+        "description": "İnsan türünün avcı-toplayıcı günlerinden günümüz teknolojik çağına kadar uzanan geniş tarihsel yolculuğunu yorumlayan etkili bir popüler bilim çalışması.",
+        "original_language": "İngilizce",
+        "translator": "",
+        "series": "Big Ideas",
+        "award": "",
+        "keywords": ["tarih", "antropoloji", "medeniyet", "insanlık"],
+    },
+    {
+        "title": "Homo Deus",
+        "authors": ["Yuval Noah Harari"],
+        "isbn": "9780062464316",
+        "genre": "Popüler Bilim",
+        "publisher": "Harper",
+        "publish_year": 2017,
+        "cover_url": FALLBACK_COVER,
+        "description": "İnsanlığın geleceğini, yapay zekâyı, biyoteknolojiyi ve veri çağının etik sorunlarını tartışan düşünsel bir çalışma.",
+        "original_language": "İngilizce",
+        "translator": "",
+        "series": "Big Ideas",
+        "award": "",
+        "keywords": ["gelecek", "yapay zeka", "teknoloji", "biyoteknoloji"],
+    },
+    {
+        "title": "Bülbülü Öldürmek",
+        "authors": ["Harper Lee"],
+        "isbn": "9789750738524",
+        "genre": "Dünya Klasikleri",
+        "publisher": "Sel Yayıncılık",
+        "publish_year": 2020,
+        "cover_url": FALLBACK_COVER,
+        "description": "Amerikan Güneyi'nde ırkçılık, adalet ve çocuk bakışı üzerinden toplum eleştirisi sunan modern klasik.",
+        "original_language": "İngilizce",
+        "translator": "Ülker İnce",
+        "series": "Modern Klasikler",
+        "award": "Pulitzer Prize",
+        "keywords": ["adalet", "ırkçılık", "çocuk anlatıcı", "toplum"],
+    },
+    {
+        "title": "Yüzyıllık Yalnızlık",
+        "authors": ["Gabriel Garcia Marquez"],
+        "isbn": "9789750738605",
+        "genre": "Büyülü Gerçekçilik",
+        "publisher": "Can Yayınları",
+        "publish_year": 2022,
+        "cover_url": FALLBACK_COVER,
+        "description": "Buendia ailesinin kuşaklar boyunca süren hikâyesi üzerinden Latin Amerika tarihini büyülü gerçekçilikle anlatan başyapıt.",
+        "original_language": "İspanyolca",
+        "translator": "Seçkin Selvi",
+        "series": "Dünya Edebiyatı",
+        "award": "Nobel Prize linked author",
+        "keywords": ["aile", "latin amerika", "mit", "büyülü gerçekçilik"],
+    },
+    {
+        "title": "Körlük",
+        "authors": ["Jose Saramago"],
+        "isbn": "9789750738606",
+        "genre": "Distopya",
+        "publisher": "Kırmızı Kedi",
+        "publish_year": 2021,
+        "cover_url": FALLBACK_COVER,
+        "description": "Toplumsal düzenin ani bir felaket karşısında nasıl çöktüğünü alegorik ve çarpıcı bir anlatımla işleyen roman.",
+        "original_language": "Portekizce",
+        "translator": "Işık Ergüden",
+        "series": "Modern Dünya Edebiyatı",
+        "award": "Nobel Prize linked author",
+        "keywords": ["distopya", "toplum", "felaket", "ahlak"],
+    },
+    {
+        "title": "Dublinliler",
+        "authors": ["James Joyce"],
+        "isbn": "9789750738607",
+        "genre": "Öykü",
+        "publisher": "İletişim Yayınları",
+        "publish_year": 2019,
+        "cover_url": FALLBACK_COVER,
+        "description": "Dublin kent yaşamını, sıradan bireylerin iç dünyalarını ve modern hayatın sıkışmışlığını öyküler aracılığıyla anlatan eser.",
+        "original_language": "İngilizce",
+        "translator": "Murat Belge",
+        "series": "Modern Klasikler",
+        "award": "",
+        "keywords": ["öykü", "şehir", "modernizm", "gündelik yaşam"],
+    },
+    {
+        "title": "Karamazovlar",
+        "authors": ["Fyodor Dostoyevski"],
+        "isbn": "9789750738608",
+        "genre": "Felsefi Roman",
+        "publisher": "İş Bankası Kültür Yayınları",
+        "publish_year": 2023,
+        "cover_url": FALLBACK_COVER,
+        "description": "İnanç, suç, ahlak ve aile çatışmalarını büyük bir anlatı içinde işleyen felsefi roman.",
+        "original_language": "Rusça",
+        "translator": "Ergin Altay",
+        "series": "Hasan Ali Yücel Klasikler Dizisi",
+        "award": "",
+        "keywords": ["ahlak", "suç", "inanç", "aile"],
+    },
+    {
+        "title": "Cesur Yeni Dünya",
+        "authors": ["Aldous Huxley"],
+        "isbn": "9789750738610",
+        "genre": "Distopya",
+        "publisher": "İthaki Yayınları",
+        "publish_year": 2020,
+        "cover_url": FALLBACK_COVER,
+        "description": "Bireyselliğin tasarlanmış mutluluk düzeni içinde silindiği geleceği anlatan klasik distopya.",
+        "original_language": "İngilizce",
+        "translator": "Ümit Tosun",
+        "series": "Bilimkurgu Klasikleri",
+        "award": "",
+        "keywords": ["distopya", "biyopolitika", "teknoloji", "toplum"],
+    },
+    {
+        "title": "Zaman Makinesi",
+        "authors": ["H. G. Wells"],
+        "isbn": "9789750738612",
+        "genre": "Bilim Kurgu",
+        "publisher": "İş Bankası Kültür Yayınları",
+        "publish_year": 2018,
+        "cover_url": FALLBACK_COVER,
+        "description": "Zaman yolculuğu fikrini edebiyat tarihinde ikonik hale getiren erken dönem bilimkurgu klasiği.",
+        "original_language": "İngilizce",
+        "translator": "Levent Cinemre",
+        "series": "Hasan Ali Yücel Klasikler Dizisi",
+        "award": "",
+        "keywords": ["zaman yolculuğu", "bilimkurgu", "gelecek", "evrim"],
+    },
+    {
+        "title": "Göçebe",
+        "authors": ["Yaşar Kemal"],
+        "isbn": "9789750738613",
+        "genre": "Türk Edebiyatı",
+        "publisher": "Yapı Kredi Yayınları",
+        "publish_year": 2017,
+        "cover_url": FALLBACK_COVER,
+        "description": "Anadolu coğrafyasını ve insanını destansı anlatımıyla aktaran güçlü bir roman.",
+        "original_language": "Türkçe",
+        "translator": "",
+        "series": "Türk Edebiyatı",
+        "award": "",
+        "keywords": ["anadolu", "toplum", "epik anlatı", "kırsal yaşam"],
+    },
+    {
+        "title": "Bir Kış Gecesi Eğer Bir Yolcu",
+        "authors": ["Italo Calvino"],
+        "isbn": "9789750738614",
+        "genre": "Postmodern Roman",
+        "publisher": "YKY",
+        "publish_year": 2016,
+        "cover_url": FALLBACK_COVER,
+        "description": "Okur ile metin ilişkisini oyunsu biçimde ele alan, anlatı üzerine kurulmuş deneysel roman.",
+        "original_language": "İtalyanca",
+        "translator": "Eren Yücesan Cendey",
+        "series": "Dünya Edebiyatı",
+        "award": "",
+        "keywords": ["postmodernizm", "okur", "anlatı", "kurmaca"],
+    },
+]
+
+
 def get_connection():
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row
@@ -539,6 +765,708 @@ def find_publisher_by_title(title):
         return None if row is None else row_to_book(connection, row)
 
 
+# ========================= Semantic Web Services =========================
+
+def semantic_uri(resource_type, value):
+    return f"{BASE_URL}/semantic/{resource_type}/{quote(str(value).strip())}"
+
+
+def escape_turtle(value):
+    return (
+        str(value)
+        .replace("\\", "\\\\")
+        .replace('"', '\\"')
+        .replace("\n", "\\n")
+    )
+
+
+def book_to_jsonld(book):
+    return {
+        "@context": {
+            "schema": "https://schema.org/",
+            "ex": f"{BASE_URL}/semantic/ontology#",
+            "name": "schema:name",
+            "isbn": "schema:isbn",
+            "author": "schema:author",
+            "genre": "schema:genre",
+            "publisher": "schema:publisher",
+            "datePublished": "schema:datePublished",
+            "description": "schema:description",
+            "image": "schema:image",
+            "inLanguage": "schema:inLanguage",
+            "translator": "schema:translator",
+            "isPartOf": "schema:isPartOf",
+            "award": "schema:award",
+            "keywords": "schema:keywords",
+            "originalLanguage": "ex:originalLanguage",
+            "Book": "schema:Book",
+            "Person": "schema:Person",
+            "Organization": "schema:Organization",
+        },
+        "@type": "Book",
+        "@id": semantic_uri("books", book["isbn"]),
+        "name": book["title"],
+        "isbn": book["isbn"],
+        "genre": book["genre"],
+        "datePublished": str(book["publish_year"]),
+        "description": book["description"],
+        "image": f"{BASE_URL}{book['cover_url']}",
+        "inLanguage": book["original_language"],
+        "award": book["award"],
+        "keywords": book["keywords"],
+        "originalLanguage": book["original_language"],
+        "author": [
+            {
+                "@type": "Person",
+                "@id": semantic_uri("authors", author_name),
+                "name": author_name,
+            }
+            for author_name in book["authors"]
+        ],
+        "publisher": {
+            "@type": "Organization",
+            "@id": semantic_uri("publishers", book["publisher"]),
+            "name": book["publisher"],
+        },
+        "translator": (
+            {
+                "@type": "Person",
+                "@id": semantic_uri("translators", book["translator"]),
+                "name": book["translator"],
+            }
+            if book["translator"]
+            else None
+        ),
+        "isPartOf": (
+            {
+                "@type": "CreativeWorkSeries",
+                "@id": semantic_uri("series", book["series"]),
+                "name": book["series"],
+            }
+            if book["series"]
+            else None
+        ),
+    }
+
+
+def collection_to_jsonld(collection_name, books, query_label, query_value):
+    return {
+        "@context": "https://schema.org",
+        "@type": "Collection",
+        "@id": semantic_uri("collections", collection_name),
+        "name": collection_name,
+        "description": f"{query_label}: {query_value}",
+        "numberOfItems": len(books),
+        "hasPart": [book_to_jsonld(book) for book in books],
+    }
+
+
+def books_to_turtle(books, collection_name=None, query_label=None, query_value=None):
+    lines = [
+        "@prefix schema: <https://schema.org/> .",
+        f"@prefix ex: <{BASE_URL}/semantic/ontology#> .",
+        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .",
+        "",
+    ]
+
+    if collection_name:
+        collection_uri = semantic_uri("collections", collection_name)
+        lines.append(f"<{collection_uri}> a schema:Collection ;")
+        lines.append(f'  schema:name "{escape_turtle(collection_name)}" ;')
+        if query_label and query_value:
+            lines.append(
+                f'  schema:description "{escape_turtle(query_label)}: {escape_turtle(query_value)}" ;'
+            )
+        lines.append(f'  schema:numberOfItems "{len(books)}"^^xsd:integer .')
+        lines.append("")
+
+    for book in books:
+        book_uri = semantic_uri("books", book["isbn"])
+        author_uris = [semantic_uri("authors", author) for author in book["authors"]]
+        publisher_uri = semantic_uri("publishers", book["publisher"])
+        translator_uri = semantic_uri("translators", book["translator"]) if book["translator"] else ""
+        series_uri = semantic_uri("series", book["series"]) if book["series"] else ""
+
+        lines.append(f"<{book_uri}> a schema:Book ;")
+        lines.append(f'  schema:name "{escape_turtle(book["title"])}" ;')
+        lines.append(f'  schema:isbn "{escape_turtle(book["isbn"])}" ;')
+        lines.append(f'  schema:genre "{escape_turtle(book["genre"])}" ;')
+        lines.append(f'  schema:datePublished "{book["publish_year"]}"^^xsd:gYear ;')
+        lines.append(f'  schema:description "{escape_turtle(book["description"])}" ;')
+        lines.append(f'  schema:image "{escape_turtle(f"{BASE_URL}{book["cover_url"]}")}" ;')
+        lines.append(f'  schema:inLanguage "{escape_turtle(book["original_language"])}" ;')
+        if book["award"]:
+            lines.append(f'  schema:award "{escape_turtle(book["award"])}" ;')
+        if book["keywords"]:
+            lines.append(f'  schema:keywords "{escape_turtle(", ".join(book["keywords"]))}" ;')
+        lines.append(f'  ex:originalLanguage "{escape_turtle(book["original_language"])}" ;')
+
+        for author_uri in author_uris[:-1]:
+            lines.append(f"  schema:author <{author_uri}> ;")
+        if author_uris:
+            lines.append(f"  schema:author <{author_uris[-1]}> ;")
+        if translator_uri:
+            lines.append(f"  schema:translator <{translator_uri}> ;")
+        if series_uri:
+            lines.append(f"  schema:isPartOf <{series_uri}> ;")
+
+        lines.append(f"  schema:publisher <{publisher_uri}> .")
+        lines.append("")
+
+        for author_name in book["authors"]:
+            author_uri = semantic_uri("authors", author_name)
+            lines.append(f"<{author_uri}> a schema:Person ;")
+            lines.append(f'  schema:name "{escape_turtle(author_name)}" .')
+            lines.append("")
+
+        lines.append(f"<{publisher_uri}> a schema:Organization ;")
+        lines.append(f'  schema:name "{escape_turtle(book["publisher"])}" .')
+        lines.append("")
+
+        if translator_uri:
+            lines.append(f"<{translator_uri}> a schema:Person ;")
+            lines.append(f'  schema:name "{escape_turtle(book["translator"])}" .')
+            lines.append("")
+
+        if series_uri:
+            lines.append(f"<{series_uri}> a schema:CreativeWorkSeries ;")
+            lines.append(f'  schema:name "{escape_turtle(book["series"])}" .')
+            lines.append("")
+
+    return "\n".join(lines)
+
+
+def semantic_ontology_turtle():
+    return "\n".join(
+        [
+            "@prefix ex: <http://127.0.0.1:8000/semantic/ontology#> .",
+            "@prefix owl: <http://www.w3.org/2002/07/owl#> .",
+            "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .",
+            "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .",
+            "@prefix schema: <https://schema.org/> .",
+            "",
+            "ex:BookServiceOntology a owl:Ontology ;",
+            '  rdfs:label "Kitap Servisi Ontolojisi"@tr .',
+            "",
+            "schema:Book a owl:Class .",
+            "schema:Person a owl:Class .",
+            "schema:Organization a owl:Class .",
+            "schema:Collection a owl:Class .",
+            "",
+            "schema:name a rdf:Property .",
+            "schema:isbn a rdf:Property .",
+            "schema:author a rdf:Property .",
+            "schema:genre a rdf:Property .",
+            "schema:publisher a rdf:Property .",
+            "schema:datePublished a rdf:Property .",
+            "schema:description a rdf:Property .",
+            "schema:image a rdf:Property .",
+            "schema:inLanguage a rdf:Property .",
+            "schema:translator a rdf:Property .",
+            "schema:isPartOf a rdf:Property .",
+            "schema:award a rdf:Property .",
+            "schema:keywords a rdf:Property .",
+            "ex:originalLanguage a rdf:Property .",
+        ]
+    )
+
+
+def semantic_source_books():
+    overrides = load_book_overrides()
+    books = [apply_book_overrides(book, overrides) for book in SAMPLE_BOOKS]
+    books.extend(SEMANTIC_ONLY_BOOKS)
+    enriched_books = []
+    for book in books:
+        semantic_book = dict(book)
+        semantic_book.update(
+            {
+                "original_language": "",
+                "translator": "",
+                "series": "",
+                "award": "",
+                "keywords": [],
+            }
+        )
+        semantic_book.update(book)
+        semantic_book.update(SEMANTIC_ENRICHMENTS.get(book["isbn"], {}))
+        enriched_books.append(semantic_book)
+    return sorted(enriched_books, key=lambda item: item["title"])
+
+
+def build_semantic_dataset():
+    return collection_to_jsonld(
+        "Semantic Kitap Veri Kumesi",
+        semantic_source_books(),
+        "Kaynak",
+        "Dosya tabanli semantic veri",
+    )
+
+
+def ensure_semantic_dataset(force=False):
+    SEMANTIC_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    if SEMANTIC_DATA_PATH.exists() and not force:
+        return
+    SEMANTIC_DATA_PATH.write_text(
+        json.dumps(build_semantic_dataset(), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def jsonld_node_to_book(node):
+    publisher = node.get("publisher") or {}
+    authors = node.get("author") or []
+    image = node.get("image") or FALLBACK_COVER
+    if isinstance(image, str) and image.startswith(BASE_URL):
+        image = image.removeprefix(BASE_URL)
+
+    normalized_authors = []
+    for author in authors:
+        if isinstance(author, dict):
+            normalized_authors.append(author.get("name", ""))
+        elif isinstance(author, str):
+            normalized_authors.append(author)
+
+    publish_year = node.get("datePublished", "")
+    try:
+        publish_year = int(str(publish_year).strip())
+    except ValueError:
+        publish_year = 0
+
+    keywords = node.get("keywords", [])
+    if isinstance(keywords, str):
+        keywords = [item.strip() for item in keywords.split(",") if item.strip()]
+    elif not isinstance(keywords, list):
+        keywords = []
+
+    return {
+        "title": node.get("name", ""),
+        "isbn": node.get("isbn", ""),
+        "genre": node.get("genre", ""),
+        "publisher": publisher.get("name", "") if isinstance(publisher, dict) else str(publisher),
+        "publish_year": publish_year,
+        "cover_url": image or FALLBACK_COVER,
+        "description": node.get("description", ""),
+        "original_language": node.get("originalLanguage", "") or node.get("inLanguage", ""),
+        "translator": (
+            node.get("translator", {}).get("name", "")
+            if isinstance(node.get("translator"), dict)
+            else ""
+        ),
+        "series": (
+            node.get("isPartOf", {}).get("name", "")
+            if isinstance(node.get("isPartOf"), dict)
+            else ""
+        ),
+        "award": node.get("award", ""),
+        "keywords": keywords,
+        "authors": [author for author in normalized_authors if author],
+    }
+
+
+def load_semantic_books():
+    ensure_semantic_dataset()
+
+    try:
+        payload = json.loads(SEMANTIC_DATA_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    items = payload.get("hasPart", [])
+    if not isinstance(items, list):
+        return []
+
+    books = [jsonld_node_to_book(item) for item in items if isinstance(item, dict)]
+    return sorted(books, key=lambda book: book["title"])
+
+
+def contains_ignore_case(source, target):
+    return target.casefold() in source.casefold()
+
+
+def semantic_demo_queries():
+    return {
+        "classic_book_count": len(SAMPLE_BOOKS),
+        "semantic_book_count": len(load_semantic_books()),
+        "examples": [
+            {
+                "title": "Cevirmeni Aydin Emeç olan kitaplar",
+                "endpoint": "/semantic/query?translator=Ayd%C4%B1n%20Eme%C3%A7",
+            },
+            {
+                "title": "Bilimkurgu Klasikleri serisindeki kitaplar",
+                "endpoint": "/semantic/query?series=Bilimkurgu%20Klasikleri",
+            },
+            {
+                "title": "Pulitzer odullu eserler",
+                "endpoint": "/semantic/query?award=Pulitzer",
+            },
+            {
+                "title": "Mini SPARQL ile Portekizce aslindan cevrilmis kitaplar",
+                "endpoint": "/semantic/sparql?query=SELECT%20*%20WHERE%20translator%20CONTAINS%20%22Eme%C3%A7%22%20AND%20original_language%20=%20%22Portekizce%22",
+            },
+            {
+                "title": "Mini SPARQL ile Distopya turunde ilk iki kitap",
+                "endpoint": "/semantic/sparql?query=SELECT%20*%20WHERE%20genre%20=%20%22Distopya%22%20LIMIT%202",
+            },
+        ],
+    }
+
+
+def get_semantic_format(query):
+    requested = query.get("format", ["jsonld"])[0].strip().lower()
+    return "turtle" if requested in {"ttl", "turtle"} else "jsonld"
+
+
+def get_query_filter_value(query, key):
+    return query.get(key, [""])[0].strip()
+
+
+def build_semantic_filter_query(filters):
+    sql = [
+        """
+        SELECT DISTINCT books.*
+        FROM books
+        LEFT JOIN book_authors ON book_authors.book_id = books.id
+        LEFT JOIN authors ON authors.id = book_authors.author_id
+        WHERE 1 = 1
+        """
+    ]
+    parameters = []
+
+    if filters["isbn"]:
+        sql.append("AND books.isbn = ?")
+        parameters.append(filters["isbn"])
+    if filters["title"]:
+        sql.append("AND LOWER(books.title) LIKE LOWER(?)")
+        parameters.append(f"%{filters['title']}%")
+    if filters["author"]:
+        sql.append("AND LOWER(authors.full_name) LIKE LOWER(?)")
+        parameters.append(f"%{filters['author']}%")
+    if filters["genre"]:
+        sql.append("AND LOWER(books.genre) LIKE LOWER(?)")
+        parameters.append(f"%{filters['genre']}%")
+    if filters["publisher"]:
+        sql.append("AND LOWER(books.publisher) LIKE LOWER(?)")
+        parameters.append(f"%{filters['publisher']}%")
+    if filters["year"]:
+        sql.append("AND books.publish_year = ?")
+        parameters.append(filters["year"])
+
+    sql.append("ORDER BY books.title")
+    return "\n".join(sql), tuple(parameters)
+
+
+def find_books_by_semantic_filters(filters):
+    books = []
+    for book in load_semantic_books():
+        if filters["isbn"] and book["isbn"] != filters["isbn"]:
+            continue
+        if filters["title"] and not contains_ignore_case(book["title"], filters["title"]):
+            continue
+        if filters["author"] and not any(
+            contains_ignore_case(author, filters["author"]) for author in book["authors"]
+        ):
+            continue
+        if filters["genre"] and not contains_ignore_case(book["genre"], filters["genre"]):
+            continue
+        if filters["publisher"] and not contains_ignore_case(book["publisher"], filters["publisher"]):
+            continue
+        if filters["translator"] and not contains_ignore_case(book["translator"], filters["translator"]):
+            continue
+        if filters["original_language"] and not contains_ignore_case(book["original_language"], filters["original_language"]):
+            continue
+        if filters["series"] and not contains_ignore_case(book["series"], filters["series"]):
+            continue
+        if filters["award"] and not contains_ignore_case(book["award"], filters["award"]):
+            continue
+        if filters["year"] and str(book["publish_year"]) != str(filters["year"]):
+            continue
+        books.append(book)
+    return books
+
+
+def describe_semantic_query(filters):
+    parts = []
+    label_map = {
+        "isbn": "ISBN",
+        "title": "Baslik",
+        "author": "Yazar",
+        "genre": "Tur",
+        "publisher": "Yayinevi",
+        "translator": "Cevirmen",
+        "original_language": "Orijinal Dil",
+        "series": "Seri",
+        "award": "Odul",
+        "year": "Yil",
+    }
+    for key in ("isbn", "title", "author", "genre", "publisher", "translator", "original_language", "series", "award", "year"):
+        if filters[key]:
+            parts.append(f"{label_map[key]}={filters[key]}")
+    return ", ".join(parts) if parts else "Tum kitaplar"
+
+
+def parse_mini_sparql(query_text):
+    if not query_text:
+        raise ValueError("query parametresi zorunludur.")
+
+    match = re.fullmatch(
+        r"\s*SELECT\s+(?P<select>\*|\?book)\s+WHERE\s+(?P<where>.+?)(?:\s+LIMIT\s+(?P<limit>\d+))?\s*",
+        query_text,
+        re.IGNORECASE,
+    )
+    if not match:
+        raise ValueError(
+            'Gecerli mini SPARQL sozdizimi: SELECT * WHERE author = "..." AND genre = "..."'
+        )
+
+    where_part = match.group("where")
+    clauses = re.split(r"\s+AND\s+", where_part, flags=re.IGNORECASE)
+    if not clauses:
+        raise ValueError("WHERE bolumu en az bir kosul icermelidir.")
+
+    filters = {
+        "isbn": "",
+        "title": "",
+        "author": "",
+        "genre": "",
+        "publisher": "",
+        "translator": "",
+        "original_language": "",
+        "series": "",
+        "award": "",
+        "year": "",
+    }
+    operators = {}
+
+    for clause in clauses:
+        clause_match = re.fullmatch(
+            r'\s*(isbn|title|author|genre|publisher|translator|original_language|series|award|year)\s*(=|CONTAINS)\s*"([^"]+)"\s*',
+            clause,
+            re.IGNORECASE,
+        )
+        if not clause_match:
+            raise ValueError(
+                'Desteklenen kosullar: author = "..." veya title CONTAINS "..."'
+            )
+
+        field = clause_match.group(1).lower()
+        operator = clause_match.group(2).upper()
+        value = clause_match.group(3).strip()
+
+        if field in operators:
+            raise ValueError(f"{field} alani sorguda yalnizca bir kez kullanilabilir.")
+        if field in {"isbn", "year"} and operator != "=":
+            raise ValueError(f"{field} alani yalnizca = operatoru ile kullanilabilir.")
+
+        filters[field] = value
+        operators[field] = operator
+
+    limit = match.group("limit")
+    return {
+        "filters": filters,
+        "operators": operators,
+        "limit": None if limit is None else int(limit),
+        "raw": query_text.strip(),
+    }
+
+
+def find_books_by_mini_sparql(parsed_query):
+    filters = parsed_query["filters"]
+    operators = parsed_query["operators"]
+    results = []
+
+    for book in load_semantic_books():
+        matched = True
+        for field in ("isbn", "title", "genre", "publisher", "translator", "original_language", "series", "award"):
+            value = filters[field]
+            if not value:
+                continue
+            operator = operators.get(field, "=")
+            source = str(book[field])
+            if operator == "=" and source.casefold() != value.casefold():
+                matched = False
+                break
+            if operator == "CONTAINS" and not contains_ignore_case(source, value):
+                matched = False
+                break
+
+        if not matched:
+            continue
+
+        if filters["author"]:
+            operator = operators.get("author", "=")
+            if operator == "=":
+                if not any(author.casefold() == filters["author"].casefold() for author in book["authors"]):
+                    continue
+            elif not any(contains_ignore_case(author, filters["author"]) for author in book["authors"]):
+                continue
+
+        if filters["year"] and str(book["publish_year"]) != str(filters["year"]):
+            continue
+
+        results.append(book)
+
+    if parsed_query["limit"] is not None:
+        return results[: parsed_query["limit"]]
+    return results
+
+
+def build_semantic_payload(path, query):
+    if path == "/semantic/ontology":
+        return {
+            "format": "turtle",
+            "payload": semantic_ontology_turtle(),
+            "status": HTTPStatus.OK,
+        }
+
+    if path == "/semantic/demo-queries":
+        return {
+            "format": "jsonld",
+            "payload": semantic_demo_queries(),
+            "status": HTTPStatus.OK,
+        }
+
+    if path == "/semantic/books":
+        books = load_semantic_books()
+        return semantic_collection_response(
+            "Tum Kitaplar",
+            books,
+            "Kaynak",
+            "Dosya tabanli semantic katalog",
+            get_semantic_format(query),
+        )
+
+    if path == "/semantic/query":
+        filters = {
+            "isbn": get_query_filter_value(query, "isbn"),
+            "title": get_query_filter_value(query, "title"),
+            "author": get_query_filter_value(query, "author"),
+            "genre": get_query_filter_value(query, "genre"),
+            "publisher": get_query_filter_value(query, "publisher"),
+            "translator": get_query_filter_value(query, "translator"),
+            "original_language": get_query_filter_value(query, "original_language"),
+            "series": get_query_filter_value(query, "series"),
+            "award": get_query_filter_value(query, "award"),
+            "year": get_query_filter_value(query, "year"),
+        }
+        if not any(filters.values()):
+            return semantic_error(
+                "En az bir semantic sorgu filtresi girilmelidir.",
+                HTTPStatus.BAD_REQUEST,
+            )
+
+        books = find_books_by_semantic_filters(filters)
+        query_description = describe_semantic_query(filters)
+        return semantic_collection_response(
+            f"Semantic Query - {query_description}",
+            books,
+            "Sorgu",
+            query_description,
+            get_semantic_format(query),
+        )
+
+    if path == "/semantic/sparql":
+        try:
+            parsed_query = parse_mini_sparql(get_query_filter_value(query, "query"))
+        except ValueError as error:
+            return semantic_error(str(error), HTTPStatus.BAD_REQUEST)
+
+        books = find_books_by_mini_sparql(parsed_query)
+        return semantic_collection_response(
+            f"Mini SPARQL - {parsed_query['raw']}",
+            books,
+            "Mini SPARQL",
+            parsed_query["raw"],
+            get_semantic_format(query),
+        )
+
+    if path == "/semantic/books/by-isbn":
+        isbn = query.get("isbn", [""])[0].strip()
+        if not isbn:
+            return semantic_error("isbn parametresi zorunludur.", HTTPStatus.BAD_REQUEST)
+        book = next((book for book in load_semantic_books() if book["isbn"] == isbn), None)
+        if not book:
+            return semantic_error("Bu ISBN ile kitap bulunamadi.", HTTPStatus.NOT_FOUND)
+        return semantic_single_book_response(book, get_semantic_format(query))
+
+    if path == "/semantic/books/by-author":
+        author = query.get("author", [""])[0].strip()
+        if not author:
+            return semantic_error("author parametresi zorunludur.", HTTPStatus.BAD_REQUEST)
+        books = [
+            book
+            for book in load_semantic_books()
+            if any(contains_ignore_case(author_name, author) for author_name in book["authors"])
+        ]
+        return semantic_collection_response(
+            f"Yazar Sonucu - {author}",
+            books,
+            "Yazar",
+            author,
+            get_semantic_format(query),
+        )
+
+    if path == "/semantic/books/by-genre":
+        genre = query.get("genre", [""])[0].strip()
+        if not genre:
+            return semantic_error("genre parametresi zorunludur.", HTTPStatus.BAD_REQUEST)
+        books = [
+            book for book in load_semantic_books() if contains_ignore_case(book["genre"], genre)
+        ]
+        return semantic_collection_response(
+            f"Tur Sonucu - {genre}",
+            books,
+            "Tur",
+            genre,
+            get_semantic_format(query),
+        )
+
+    return None
+
+
+def semantic_single_book_response(book, output_format):
+    if output_format == "turtle":
+        return {
+            "format": "turtle",
+            "payload": books_to_turtle([book]),
+            "status": HTTPStatus.OK,
+        }
+
+    return {
+        "format": "jsonld",
+        "payload": book_to_jsonld(book),
+        "status": HTTPStatus.OK,
+    }
+
+
+def semantic_collection_response(collection_name, books, query_label, query_value, output_format):
+    if output_format == "turtle":
+        return {
+            "format": "turtle",
+            "payload": books_to_turtle(books, collection_name, query_label, query_value),
+            "status": HTTPStatus.OK,
+        }
+
+    return {
+        "format": "jsonld",
+        "payload": collection_to_jsonld(collection_name, books, query_label, query_value),
+        "status": HTTPStatus.OK,
+    }
+
+
+def semantic_error(message, status):
+    return {
+        "format": "jsonld",
+        "payload": {
+            "@context": "https://schema.org",
+            "@type": "Message",
+            "text": message,
+            "status": int(status),
+        },
+        "status": status,
+    }
+
+
 class BookServiceHandler(BaseHTTPRequestHandler):
     server_version = "BookService/1.0"
 
@@ -561,6 +1489,20 @@ class BookServiceHandler(BaseHTTPRequestHandler):
             return
         if path.startswith("/covers/"):
             self.serve_static(path.lstrip("/"), self.guess_content_type(path))
+            return
+        if path.startswith("/semantic/"):
+            semantic_response = build_semantic_payload(path, query)
+            if semantic_response is None:
+                self.send_json({"error": "Istenen semantic kaynak bulunamadi."}, HTTPStatus.NOT_FOUND)
+                return
+            if semantic_response["format"] == "turtle":
+                self.send_text(
+                    semantic_response["payload"],
+                    "text/turtle; charset=utf-8",
+                    semantic_response["status"],
+                )
+                return
+            self.send_json(semantic_response["payload"], semantic_response["status"], "application/ld+json; charset=utf-8")
             return
 
         if path == "/api/books/by-isbn":
@@ -645,10 +1587,18 @@ class BookServiceHandler(BaseHTTPRequestHandler):
             return content_type
         return "application/octet-stream"
 
-    def send_json(self, payload, status=HTTPStatus.OK):
+    def send_text(self, payload, content_type, status=HTTPStatus.OK):
+        content = payload.encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(content)))
+        self.end_headers()
+        self.wfile.write(content)
+
+    def send_json(self, payload, status=HTTPStatus.OK, content_type="application/json; charset=utf-8"):
         content = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
         self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(content)))
         self.end_headers()
         self.wfile.write(content)
@@ -656,6 +1606,7 @@ class BookServiceHandler(BaseHTTPRequestHandler):
 
 def run_server():
     initialize_database()
+    ensure_semantic_dataset(force=True)
     host = "127.0.0.1"
     port = 8000
     server = ThreadingHTTPServer((host, port), BookServiceHandler)

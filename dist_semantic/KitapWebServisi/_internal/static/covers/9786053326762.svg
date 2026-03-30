@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5c1a1b"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" rx="36" fill="url(#g)"/>
+  <rect x="42" y="42" width="516" height="716" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)"/>
+  <rect x="72" y="106" width="152" height="12" rx="6" fill="#f1c27d"/>
+  <text x="72" y="198" fill="#fff7ed" font-family="Georgia, serif" font-size="54" font-weight="700">Yeraltindan</text>
+  <text x="72" y="260" fill="#fff7ed" font-family="Georgia, serif" font-size="54" font-weight="700">Notlar</text>
+  <text x="72" y="508" fill="#fff7ed" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700">Fyodor Dostoyevski</text>
+  <text x="72" y="572" fill="#f1c27d" font-family="Segoe UI, sans-serif" font-size="23" letter-spacing="2">IS BANKASI KULTUR YAYINLARI</text>
+  <path d="M92 648 C180 590, 262 726, 362 650 S492 610, 526 690" fill="none" stroke="#f1c27d" stroke-width="10" stroke-linecap="round"/>
+  <text x="72" y="728" fill="#ffe7c2" font-family="Segoe UI, sans-serif" font-size="22" opacity="0.84">Dogru kapak icin sabitlendi</text>
+</svg>

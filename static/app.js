@@ -5,6 +5,26 @@ const defaultTexts = {
   heroLead: "ISBN, yazar, tur veya kitap adina gore sorgu yapin; sonuclari kapak gorseli, meta bilgiler ve kart duzeni ile ekranda inceleyin.",
   heroStatLabel: "Canli Sonuc",
   heroStatText: "Arayuz ve API ayni veritabanini kullanir.",
+  semanticEyebrow: "Semantic Katman",
+  semanticTitle: "Bu servis semantic web uyumlu calisir.",
+  semanticLead: "Kitap verileri JSON-LD, Turtle, ontology ve mini SPARQL destekli semantic servislerle sunulur.",
+  semanticFeatureOne: "JSON-LD Cikti",
+  semanticFeatureTwo: "Turtle Destegi",
+  semanticFeatureThree: "Mini SPARQL",
+  semanticFeatureFour: "Ontology Endpoint",
+  serviceModeEyebrow: "Servis Modu",
+  serviceModeTitle: "Sonuclari hangi servis katmanindan getirelim?",
+  classicModeButton: "Klasik Servis",
+  semanticModeButton: "Semantic Servis",
+  semanticModeBadge: "Semantic Mod",
+  classicModeBadge: "Klasik Mod",
+  bookDetailTitle: "Kitap Dosyasi",
+  semanticDetailTitle: "Semantic Veri Katmani",
+  translatorLabel: "Cevirmen",
+  seriesLabel: "Seri",
+  originalLanguageLabel: "Orijinal Dil",
+  awardLabel: "Odul",
+  semanticSignalsLabel: "Semantic Etiketler",
   resultCountDefault: "0 kitap",
   apiTitle: "Hazir API Uclari",
   loadAllButton: "Tum Kitaplari Getir",
@@ -57,12 +77,15 @@ const defaultTexts = {
 let texts = { ...defaultTexts };
 const GOOGLE_BOOKS_API = "https://www.googleapis.com/books/v1/volumes";
 let lastListPayload = null;
+let currentServiceMode = "classic";
 
 const resultElement = document.getElementById("result");
 const resultCountElement = document.getElementById("resultCount");
 const resultSubtitleElement = document.getElementById("resultSubtitle");
 const clearButton = document.getElementById("clearButton");
 const loadAllButton = document.getElementById("loadAllButton");
+const classicModeButton = document.getElementById("classicModeButton");
+const semanticModeButton = document.getElementById("semanticModeButton");
 const forms = document.querySelectorAll("form[data-endpoint]");
 
 function t(key, replacements = {}) {
@@ -191,7 +214,65 @@ function applyStaticTexts() {
   document.title = t("pageTitle");
 }
 
+function normalizeSemanticBook(node) {
+  if (!node) {
+    return null;
+  }
+
+  const authors = Array.isArray(node.author)
+    ? node.author.map((author) => author?.name || author).filter(Boolean)
+    : [];
+
+  const publisher =
+    typeof node.publisher === "object" && node.publisher !== null
+      ? node.publisher.name || ""
+      : node.publisher || "";
+
+  let coverUrl = node.image || "/covers/default.svg";
+  if (typeof coverUrl === "string" && coverUrl.startsWith("http://127.0.0.1:8000")) {
+    coverUrl = coverUrl.replace("http://127.0.0.1:8000", "");
+  }
+
+  return {
+    title: node.name || "",
+    isbn: node.isbn || "",
+    genre: node.genre || "",
+    publisher,
+    publish_year: Number.parseInt(node.datePublished, 10) || "",
+    cover_url: coverUrl,
+    description: node.description || "",
+    original_language: node.originalLanguage || node.inLanguage || "",
+    translator: node.translator?.name || "",
+    series: node.isPartOf?.name || "",
+    award: node.award || "",
+    keywords: Array.isArray(node.keywords)
+      ? node.keywords
+      : typeof node.keywords === "string"
+        ? node.keywords.split(",").map((item) => item.trim()).filter(Boolean)
+        : [],
+    authors,
+  };
+}
+
 function normalizePayload(payload) {
+  if (payload?.["@type"] === "Collection" && Array.isArray(payload.hasPart)) {
+    const books = payload.hasPart.map(normalizeSemanticBook).filter(Boolean);
+    return {
+      books,
+      summary: t("summaryMany", { count: String(books.length) }),
+      subtitle: payload.description || t("subtitleAllBooks"),
+    };
+  }
+
+  if (payload?.["@type"] === "Book" || (payload?.isbn && payload?.name)) {
+    const book = normalizeSemanticBook(payload);
+    return {
+      books: book ? [book] : [],
+      summary: t("summarySingle"),
+      subtitle: t("subtitleSelectedBook", { value: book?.title || payload.name || "" }),
+    };
+  }
+
   if (payload?.books) {
     return {
       books: payload.books,
@@ -219,21 +300,92 @@ function normalizePayload(payload) {
   };
 }
 
+function getServiceMode() {
+  return currentServiceMode;
+}
+
+function updateServiceModeButtons() {
+  classicModeButton?.classList.toggle("is-active", getServiceMode() === "classic");
+  semanticModeButton?.classList.toggle("is-active", getServiceMode() === "semantic");
+}
+
+function setServiceMode(mode) {
+  currentServiceMode = mode === "semantic" ? "semantic" : "classic";
+  document.body.dataset.serviceMode = currentServiceMode;
+  updateServiceModeButtons();
+}
+
+function modeBadgeLabel() {
+  return getServiceMode() === "semantic" ? t("semanticModeBadge") : t("classicModeBadge");
+}
+
+function buildRequestUrl(field, value) {
+  const mode = getServiceMode();
+  const encodedValue = encodeURIComponent(value);
+
+  if (mode === "semantic") {
+    if (field === "isbn") {
+      return `/semantic/books/by-isbn?isbn=${encodedValue}`;
+    }
+    if (field === "author") {
+      return `/semantic/books/by-author?author=${encodedValue}`;
+    }
+    if (field === "genre") {
+      return `/semantic/books/by-genre?genre=${encodedValue}`;
+    }
+    return `/semantic/books`;
+  }
+
+  if (field === "isbn") {
+    return `/api/books/by-isbn?isbn=${encodedValue}`;
+  }
+  if (field === "author") {
+    return `/api/books/by-author?author=${encodedValue}`;
+  }
+  if (field === "genre") {
+    return `/api/books/by-genre?genre=${encodedValue}`;
+  }
+  return "/api/books";
+}
+
 function bookCard(book) {
+  const semanticExtras = getServiceMode() === "semantic"
+    ? [
+        book.original_language ? `<span>${t("originalLanguageLabel")}: ${book.original_language}</span>` : "",
+        book.translator ? `<span>${t("translatorLabel")}: ${book.translator}</span>` : "",
+        book.series ? `<span>${t("seriesLabel")}: ${book.series}</span>` : "",
+      ].filter(Boolean).join("")
+    : "";
+
+  const signalPills = getServiceMode() === "semantic"
+    ? [
+        book.award ? `<span class="signal-pill">${book.award}</span>` : "",
+        ...(book.keywords || []).slice(0, 2).map((keyword) => `<span class="signal-pill">${keyword}</span>`),
+      ].join("")
+    : "";
+
   return `
     <article class="book-card" data-book-isbn="${book.isbn}" tabindex="0" role="button">
-      <img
-        class="book-cover"
-        src="${book.cover_url}"
-        alt="${book.title} kapak gorseli"
-        loading="lazy"
-        referrerpolicy="no-referrer"
-        data-isbn="${book.isbn}"
-        onerror="this.src='/covers/default.svg'">
+      <div class="book-cover-frame">
+        <span class="mode-ribbon">${modeBadgeLabel()}</span>
+        <img
+          class="book-cover"
+          src="${book.cover_url}"
+          alt="${book.title} kapak gorseli"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          data-isbn="${book.isbn}"
+          onerror="this.src='/covers/default.svg'">
+      </div>
       <div class="book-body">
-        <span class="book-badge">${book.genre}</span>
-        <h3>${book.title}</h3>
-        <p class="book-authors">${book.authors.join(", ")}</p>
+        <div class="book-head">
+          <span class="book-badge">${book.genre}</span>
+          <h3>${book.title}</h3>
+          <p class="book-authors">${book.authors.join(", ")}</p>
+        </div>
+        ${signalPills ? `<div class="signal-row">${signalPills}</div>` : ""}
+        ${book.description ? `<p class="book-summary">${book.description.slice(0, 180)}...</p>` : ""}
+        ${semanticExtras ? `<div class="book-extra">${semanticExtras}</div>` : ""}
         <div class="book-meta">
           <span>${t("isbnLabel")}: ${book.isbn}</span>
           <span>${t("publisherLabel")}: ${book.publisher}</span>
@@ -262,7 +414,7 @@ function renderBooks(payload) {
   resultCountElement.textContent = `${normalized.books.length} kitap`;
   resultSubtitleElement.textContent = normalized.subtitle;
 
-  if (payload?.books && normalized.books.length !== 1) {
+  if (normalized.books.length !== 1) {
     lastListPayload = payload;
   }
 
@@ -298,14 +450,72 @@ function renderBooks(payload) {
       `
       : "";
 
+  const detailFacts = [
+    `<span>${t("isbnLabel")}: ${featuredBook.isbn}</span>`,
+    `<span>${t("publisherLabel")}: ${featuredBook.publisher}</span>`,
+    `<span>${t("publishYearLabel")}: ${featuredBook.publish_year}</span>`,
+    featuredBook.original_language ? `<span>${t("originalLanguageLabel")}: ${featuredBook.original_language}</span>` : "",
+    featuredBook.translator ? `<span>${t("translatorLabel")}: ${featuredBook.translator}</span>` : "",
+    featuredBook.series ? `<span>${t("seriesLabel")}: ${featuredBook.series}</span>` : "",
+    featuredBook.award ? `<span>${t("awardLabel")}: ${featuredBook.award}</span>` : "",
+  ].filter(Boolean).join("");
+
+  const detailSignals = getServiceMode() === "semantic"
+    ? `
+      <div class="detail-signals">
+        <span class="meta-chip">${t("semanticSignalsLabel")}</span>
+        <div class="signal-row">
+          ${(featuredBook.keywords || []).map((keyword) => `<span class="signal-pill">${keyword}</span>`).join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  if (normalized.books.length === 1) {
+    resultElement.className = "result-grid detail-mode";
+    resultElement.innerHTML = `
+      <section class="result-highlight detail-layout">
+        <article class="meta-card detail-sidebar">
+          <div class="detail-sidebar-top">
+            <span class="meta-chip">${getServiceMode() === "semantic" ? t("semanticDetailTitle") : t("bookDetailTitle")}</span>
+            ${backButton}
+          </div>
+          <strong>${normalized.summary}</strong>
+          <p>${normalized.subtitle}</p>
+          ${descriptionBlock}
+          ${detailSignals}
+        </article>
+        <article class="detail-card">
+          <div class="detail-cover-column">
+            <span class="mode-ribbon">${modeBadgeLabel()}</span>
+            <img
+              class="detail-cover"
+              src="${featuredBook.cover_url}"
+              alt="${featuredBook.title} kapak gorseli"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              data-isbn="${featuredBook.isbn}"
+              onerror="this.src='/covers/default.svg'">
+          </div>
+          <div class="detail-body">
+            <span class="book-badge">${featuredBook.genre}</span>
+            <h3>${featuredBook.title}</h3>
+            <p class="detail-authors">${featuredBook.authors.join(", ")}</p>
+            <div class="detail-facts">${detailFacts}</div>
+          </div>
+        </article>
+      </section>
+    `;
+    void hydrateVisibleCovers(normalized.books);
+    return;
+  }
+
   resultElement.innerHTML = `
     <section class="result-highlight">
-      <article class="meta-card">
+      <article class="meta-card overview-card">
         <span class="meta-chip">${t("summaryChip")}</span>
-        ${backButton}
         <strong>${normalized.summary}</strong>
         <p>${normalized.subtitle}</p>
-        ${descriptionBlock}
       </article>
     </section>
     ${normalized.books.map(bookCard).join("")}
@@ -367,19 +577,26 @@ forms.forEach((form) => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const field = form.dataset.field;
-    const endpoint = form.dataset.endpoint;
     const value = new FormData(form).get(field)?.toString().trim();
     if (!value) {
       renderError({ error: t("validationMessage") }, 400);
       return;
     }
-    const url = `${endpoint}?${field}=${encodeURIComponent(value)}`;
+    const url = buildRequestUrl(field, value);
     await requestJson(url);
   });
 });
 
 loadAllButton.addEventListener("click", async () => {
-  await requestJson("/api/books");
+  await requestJson(getServiceMode() === "semantic" ? "/semantic/books" : "/api/books");
+});
+
+classicModeButton?.addEventListener("click", () => {
+  setServiceMode("classic");
+});
+
+semanticModeButton?.addEventListener("click", () => {
+  setServiceMode("semantic");
 });
 
 resultElement.addEventListener("click", async (event) => {
@@ -397,7 +614,7 @@ resultElement.addEventListener("click", async (event) => {
   }
 
   const isbn = bookCardElement.dataset.bookIsbn;
-  await requestJson(`/api/books/by-isbn?isbn=${encodeURIComponent(isbn)}`);
+  await requestJson(buildRequestUrl("isbn", isbn));
 });
 
 resultElement.addEventListener("keydown", async (event) => {
@@ -412,7 +629,7 @@ resultElement.addEventListener("keydown", async (event) => {
 
   event.preventDefault();
   const isbn = bookCardElement.dataset.bookIsbn;
-  await requestJson(`/api/books/by-isbn?isbn=${encodeURIComponent(isbn)}`);
+  await requestJson(buildRequestUrl("isbn", isbn));
 });
 
 clearButton.addEventListener("click", () => {
@@ -422,6 +639,7 @@ clearButton.addEventListener("click", () => {
 async function initializePage() {
   await loadTexts();
   applyStaticTexts();
+  setServiceMode(currentServiceMode);
   renderInitialState();
 }
 

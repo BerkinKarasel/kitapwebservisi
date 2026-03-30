@@ -17,7 +17,6 @@
       <div class="hero-stat">
         <span class="stat-label" data-text="heroStatLabel">Canli Sonuc</span>
         <strong id="resultCount" data-text="resultCountDefault">0 kitap</strong>
-        <p data-text="heroStatText"></p>
       </div>
     </section>
 
@@ -27,6 +26,31 @@
         <p data-text="actionText">Tüm kitaplari tek tikla listeleyin ve kartlarin içine tiklayarak detay ozet sayfalarina gecin.</p>
       </div>
       <button id="loadAllButton" class="secondary action-button" type="button" data-text="loadAllButton">Tüm Kitapları Getir</button>
+    </section>
+
+    <section class="semantic-card shell">
+      <div class="semantic-copy">
+        <p class="eyebrow" data-text="semanticEyebrow">Semantic Katman</p>
+        <h2 data-text="semanticTitle">Bu servis semantic web uyumlu çalışır.</h2>
+        <p class="semantic-lead" data-text="semanticLead">Kitap verileri JSON-LD, Turtle, ontology ve mini SPARQL destekli semantic servislerle sunulur.</p>
+      </div>
+      <div class="semantic-highlights">
+        <span class="semantic-pill" data-text="semanticFeatureOne">JSON-LD Çıktı</span>
+        <span class="semantic-pill" data-text="semanticFeatureTwo">Turtle Desteği</span>
+        <span class="semantic-pill" data-text="semanticFeatureThree">Mini SPARQL</span>
+        <span class="semantic-pill" data-text="semanticFeatureFour">Ontology Endpoint</span>
+      </div>
+    </section>
+
+    <section class="service-mode shell">
+      <div class="service-mode-copy">
+        <p class="eyebrow" data-text="serviceModeEyebrow">Servis Modu</p>
+        <h2 data-text="serviceModeTitle">Sonuclari hangi servis katmanindan getirelim?</h2>
+      </div>
+      <div class="service-mode-toggle" role="tablist" aria-label="Servis modu secimi">
+        <button id="classicModeButton" class="mode-button is-active" type="button" data-mode="classic" data-text="classicModeButton">Klasik Servis</button>
+        <button id="semanticModeButton" class="mode-button" type="button" data-mode="semantic" data-text="semanticModeButton">Semantic Servis</button>
+      </div>
     </section>
 
     <section class="grid">
